@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ignore="http://www.galasoft.ch/ignore"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d ignore"
         Height="300"
         Width="300"
@@ -20,13 +21,15 @@
 
     <Grid x:Name="LayoutRoot">
 
-        <TextBlock FontSize="36"
-                   FontWeight="Bold"
-                   Foreground="Purple"
-                   Text="{Binding WelcomeTitle}"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   TextWrapping="Wrap" />
+        <materialDesign:Card Padding="8" Margin="8">
+            <TextBlock FontSize="36"
+                       FontWeight="Bold"
+                       Foreground="Purple"
+                       Text="{Binding WelcomeTitle}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       TextWrapping="Wrap" />
+        </materialDesign:Card>
 
     </Grid>
 </Window>
