@@ -13,6 +13,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using SimpleSamplerWPF.Model;
+using SimpleSamplerWPF.Model.MIDI;
 
 namespace SimpleSamplerWPF.ViewModel
 {
@@ -32,10 +33,12 @@ namespace SimpleSamplerWPF.ViewModel
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 SimpleIoc.Default.Register<IDataService, Design.DesignDataService>();
+                //TODO: a design time midi service
             }
             else
             {
                 SimpleIoc.Default.Register<IDataService, DataService>();
+                SimpleIoc.Default.Register<IMidiDeviceService, MidiDeviceService>();
             }
 
             SimpleIoc.Default.Register<MainViewModel>();

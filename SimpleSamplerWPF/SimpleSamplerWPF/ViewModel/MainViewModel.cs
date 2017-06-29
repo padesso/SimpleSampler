@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using SimpleSamplerWPF.Model;
+using SimpleSamplerWPF.Model.MIDI;
 
 namespace SimpleSamplerWPF.ViewModel
 {
@@ -12,6 +13,7 @@ namespace SimpleSamplerWPF.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private readonly IDataService _dataService;
+        private readonly IMidiDeviceService _midiDeviceService;
 
         /// <summary>
         /// The <see cref="WelcomeTitle" /> property's name.
@@ -39,7 +41,7 @@ namespace SimpleSamplerWPF.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IDataService dataService)
+        public MainViewModel(IDataService dataService, IMidiDeviceService midiDeviceService)
         {
             _dataService = dataService;
             _dataService.GetData(
@@ -53,6 +55,14 @@ namespace SimpleSamplerWPF.ViewModel
 
                     WelcomeTitle = item.Title;
                 });
+
+            _midiDeviceService = midiDeviceService;
+            _midiDeviceService.GetDeviceNames(
+                (names, error) =>
+            {
+                //TODO: set a value and bind to UI
+                var test = names;
+            });
         }
 
         ////public override void Cleanup()
