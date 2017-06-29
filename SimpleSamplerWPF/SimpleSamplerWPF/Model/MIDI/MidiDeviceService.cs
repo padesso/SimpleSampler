@@ -9,11 +9,15 @@ namespace SimpleSamplerWPF.Model.MIDI
 {
     class MidiDeviceService : IMidiDeviceService
     {
-        public void GetDevice(Action<MidiInCapabilities, Exception> callback)
+        //TODO: error handling
+        public void GetDevice(int deviceID, Action<MidiInCapabilities, Exception> callback)
         {
-            
+            var device = MidiIn.DeviceInfo(deviceID);
+
+            callback(device, null);
         }
 
+        //TODO: error handling
         public void GetDeviceNames(Action<List<string>, Exception> callback)
         {
             List<string> names = new List<string>();

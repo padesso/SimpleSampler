@@ -63,6 +63,14 @@ namespace SimpleSamplerWPF.ViewModel
                 //TODO: set a value and bind to UI
                 var test = names;
             });
+
+            //TODO: pass selected index of device dropdown
+            _midiDeviceService.GetDevice(0,
+                (device, error) =>
+                {
+                    //TODO: set a value and bind to UI
+                    var selectedDevice = device;
+                });
         }
 
         ////public override void Cleanup()
