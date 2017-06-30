@@ -33,12 +33,10 @@ namespace SimpleSamplerWPF.ViewModel
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
-                SimpleIoc.Default.Register<IDataService, Design.DesignDataService>();
                 SimpleIoc.Default.Register<IMidiDeviceService, DesignMidiDeviceService>();
             }
             else
             {
-                SimpleIoc.Default.Register<IDataService, DataService>();
                 SimpleIoc.Default.Register<IMidiDeviceService, MidiDeviceService>();
             }
 
