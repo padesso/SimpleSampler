@@ -1,6 +1,8 @@
 ﻿using NAudio.Midi;
+using SimpleSamplerWPF.Error;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,15 +14,25 @@ namespace SimpleSamplerWPF.Model.MIDI
         //TODO: error handling
         public void GetDevice(int deviceID, Action<MidiInCapabilities, Exception> callback)
         {
-            var device = MidiIn.DeviceInfo(deviceID);
+            MidiInCapabilities cap = new MidiInCapabilities();
 
-            callback(device, null);
+            if (MidiIn.NumberOfDevices > 0)
+            {
+                cap = MidiIn.DeviceInfo(deviceID);
+
+                callback(cap, null);
+            }
+            else
+            {
+                MidiInCapabilities nullCap = new MidiInCapabilities();            
+                callback(nullCap, new MidiDeviceServiceException("No Midi Devices Found"));
+            }
         }
 
         //TODO: error handling
-        public void GetDeviceNames(Action<List<string>, Exception> callback)
+        public void GetDeviceNames(Action<ObservableCollection<string>, Exception> callback)
         {
-            List<string> names = new List<string>();
+            ObservableCollection<string> names = new ObservableCollection<string>();
 
             for (int device = 0; device < MidiIn.NumberOfDevices; device++)
             {

@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using SimpleSamplerWPF.Model;
 using SimpleSamplerWPF.Model.MIDI;
+using System.Collections.ObjectModel;
 
 namespace SimpleSamplerWPF.ViewModel
 {
@@ -21,6 +22,7 @@ namespace SimpleSamplerWPF.ViewModel
         public const string WelcomeTitlePropertyName = "WelcomeTitle";
 
         private string _welcomeTitle = string.Empty;
+        private ObservableCollection<string> midiDevices;
 
         /// <summary>
         /// Gets the WelcomeTitle property.
@@ -37,6 +39,20 @@ namespace SimpleSamplerWPF.ViewModel
                 Set(ref _welcomeTitle, value);
             }
         }
+
+        public ObservableCollection<string> MidiDevices
+        {
+            get
+            {
+                return midiDevices;
+            }
+
+            set
+            {
+                Set(ref midiDevices, value);
+            }
+        }
+
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -60,8 +76,10 @@ namespace SimpleSamplerWPF.ViewModel
             _midiDeviceService.GetDeviceNames(
                 (names, error) =>
             {
-                //TODO: set a value and bind to UI
-                var test = names;
+                MidiDevices = names;
+
+                //TEST ONLY
+                MidiDevices = new ObservableCollection<string>() { "test", "test1" };
             });
 
             //TODO: pass selected index of device dropdown
