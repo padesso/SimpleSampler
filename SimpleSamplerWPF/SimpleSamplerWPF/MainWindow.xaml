@@ -21,20 +21,73 @@
 
     <Grid x:Name="LayoutRoot">
 
-        <materialDesign:Card Padding="8" Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Name="MenuRow" Height="auto"/>
+            <RowDefinition Name="ExplorerRow" Height="200"/>
+            <RowDefinition Name="TrackRow" Height="*"/>
+            <RowDefinition Name="FooterRow" Height="50"/>
+        </Grid.RowDefinitions>
 
-            <ComboBox ItemsSource="{Binding MidiDevices}">
-                
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Menu IsMainMenu="True" Grid.Row="0" Grid.Column="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="New">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="File" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Save">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ContentSave" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Save As.." />
+                <MenuItem Header="Exit" InputGestureText="Ctrl+E">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ExitToApp" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <StackPanel Grid.Row="0" Grid.Column="1"
+                    Margin="0,0,15,0"
+            HorizontalAlignment="Right" Orientation="Horizontal">
+            <Label VerticalAlignment="Center" 
+                   Content="Midi Device:"/>
+            <ComboBox 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Width="200"
+                ItemsSource="{Binding MidiDevices}">
             </ComboBox>
+        </StackPanel>
+
+        <materialDesign:Card  
+            Padding="5" Margin="5" 
+            Grid.Row="1" Grid.ColumnSpan="2"
+            VerticalAlignment="Stretch">
+
+            <ListView 
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Left"
+                Width="300">
+                
+                
+            </ListView>
             
-            <!--<TextBlock FontSize="36"
-                       FontWeight="Bold"
-                       Foreground="Purple"
-                       Text="{Binding WelcomeTitle}"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       TextWrapping="Wrap" />-->
         </materialDesign:Card>
 
+
+        <Button Grid.Row="3"
+                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Margin="5 5 0 5" HorizontalAlignment="Left" VerticalAlignment="Center"
+                ToolTip="Add a track.">
+            <materialDesign:PackIcon Kind="Plus" Height="20" Width="20" />
+        </Button>
     </Grid>
 </Window>
