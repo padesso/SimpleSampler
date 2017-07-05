@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ignore="http://www.galasoft.ch/ignore"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:user="clr-namespace:SimpleSamplerWPF.Controls"
         mc:Ignorable="d ignore"
         Height="600"
         Width="800"
@@ -83,6 +84,20 @@
         </materialDesign:Card>
 
 
+        <materialDesign:Card  
+            Padding="5" Margin="5" 
+            Grid.Row="2" Grid.ColumnSpan="2"
+            VerticalAlignment="Stretch">
+
+            <StackPanel Orientation="Horizontal" >
+                <user:TrackControl/>
+                <user:TrackControl/>
+                <user:TrackControl/>
+                <user:TrackControl/>
+            </StackPanel>
+
+        </materialDesign:Card>
+        
         <Button Grid.Row="3"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 Margin="5 5 0 5" HorizontalAlignment="Left" VerticalAlignment="Center"
