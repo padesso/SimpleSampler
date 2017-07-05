@@ -4,9 +4,75 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SimpleSamplerWPF.Controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="225" d:DesignWidth="100">
     <Grid>
-            
+
+        <Grid.RowDefinitions>
+            <RowDefinition Name="ControlRow" Height="25"/>
+            <RowDefinition Name="MainRow" Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="25"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Row="0" Grid.Column="0"
+                Height="20" Width="20"
+                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                ToolTip="Delete track.">
+            <materialDesign:PackIcon Kind="Minus" Height="15" Width="15" />
+        </Button>
+
+        <!-- TODO: Make this a drop down to select playback type -->
+        <Button Grid.Row="0" Grid.Column="2"
+                Height="20" Width="20"
+                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                ToolTip="Select sample playback type.">
+            <materialDesign:PackIcon Kind="ArrowDownDropCircle" Height="15" Width="15"/>
+        </Button>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+
+            <Slider x:Name="volumeSlider" 
+                    Orientation="Vertical" 
+                    Height="100"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Margin="0,0,0,5" />
+
+            <Button x:Name="muteButton"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                    Height="15" Width="15"
+                    ToolTip="Mute this track."
+                    Margin="0,0,0,5" >
+                <materialDesign:PackIcon Kind="Microphone" Height="10" Width="10" />
+            </Button>
+
+            <Button x:Name="soloButton"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                    Height="15" Width="15"
+                    ToolTip="Mute this track."
+                    Margin="0,0,0,5" >
+                <materialDesign:PackIcon Kind="Headphones" Height="10" Width="10" />
+            </Button>
+
+            <!--TODO: figure out how to remove purple background -->
+            <Slider Name="panSlider"
+                    Minimum="0" Maximum="1.0"
+                    Value="0.5"
+                    Margin="0,0,0,5" />
+
+            <TextBox Name="trackNameText"
+                     Height="25"
+                     >
+            </TextBox>
+
+        </StackPanel>
+
     </Grid>
 </UserControl>
