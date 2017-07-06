@@ -24,17 +24,19 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Name="MenuRow" Height="auto"/>
-            <RowDefinition Name="ExplorerRow" Height="200"/>
-            <RowDefinition Name="TrackRow" Height="*"/>
-            <RowDefinition Name="FooterRow" Height="50"/>
+            <RowDefinition Name="ExplorerRow" Height="*"/>
+            <RowDefinition Name="TrackRow" Height="275"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="125"/>
         </Grid.ColumnDefinitions>
-        
-        <Menu IsMainMenu="True" Grid.Row="0" Grid.Column="0">
+
+        <Menu IsMainMenu="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5">
             <MenuItem Header="_File">
                 <MenuItem Header="New">
                     <MenuItem.Icon>
@@ -55,7 +57,7 @@
             </MenuItem>
         </Menu>
 
-        <StackPanel Grid.Row="0" Grid.Column="1"
+        <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3"
                     Margin="0,0,15,0"
             HorizontalAlignment="Right" Orientation="Horizontal">
             <Label VerticalAlignment="Center" 
@@ -70,7 +72,7 @@
 
         <materialDesign:Card  
             Padding="5" Margin="5" 
-            Grid.Row="1" Grid.ColumnSpan="2"
+            Grid.Row="1" Grid.ColumnSpan="5"
             VerticalAlignment="Stretch">
 
             <ListView 
@@ -86,7 +88,7 @@
 
         <materialDesign:Card  
             Padding="5" Margin="5" 
-            Grid.Row="2" Grid.ColumnSpan="2"
+            Grid.Row="2" Grid.ColumnSpan="3"
             VerticalAlignment="Stretch">
 
             <StackPanel Orientation="Horizontal" >
@@ -98,9 +100,19 @@
 
         </materialDesign:Card>
         
-        <Button Grid.Row="3"
+        <!-- Master -->
+        <materialDesign:Card  
+            Padding="5" Margin="5" 
+            Grid.Row="2" Grid.Column="4"
+            VerticalAlignment="Stretch">
+            
+            <user:TrackControl IsMaster="True"/>
+            
+        </materialDesign:Card>
+
+        <Button Grid.Row="2" Grid.Column="3"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                Margin="5 5 0 5" HorizontalAlignment="Left" VerticalAlignment="Center"
+                Margin="5 5 5 5" HorizontalAlignment="Center" VerticalAlignment="Top"
                 ToolTip="Add a track.">
             <materialDesign:PackIcon Kind="Plus" Height="20" Width="20" />
         </Button>

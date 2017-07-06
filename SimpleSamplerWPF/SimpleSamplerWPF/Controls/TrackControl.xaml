@@ -6,9 +6,10 @@
              xmlns:local="clr-namespace:SimpleSamplerWPF.Controls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="225" d:DesignWidth="100"
+             d:DesignHeight="250" d:DesignWidth="100"
              Margin="5,5,5,5"
-             BorderBrush="Gray"
+             Background="WhiteSmoke"
+             BorderBrush="WhiteSmoke"
              BorderThickness="1">
     <Grid>
 
@@ -71,6 +72,7 @@
                     Margin="0,0,0,5" />
 
             <TextBox Name="trackNameText"
+                     FontSize="10"
                      Height="25"
                      >
             </TextBox>
