@@ -29,7 +29,7 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="50"/>
@@ -73,16 +73,45 @@
         <materialDesign:Card  
             Padding="5" Margin="5" 
             Grid.Row="1" Grid.ColumnSpan="5"
-            VerticalAlignment="Stretch">
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch">
 
-            <ListView 
-                VerticalAlignment="Stretch"
-                HorizontalAlignment="Left"
-                Width="300">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 
-                
-            </ListView>
-            
+                <ListView Grid.Column="1"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Left"
+                    Width="300">
+                </ListView>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Label Grid.Row="0"
+                        HorizontalAlignment="Center">Selected File Name</Label>
+                    
+                    <!-- TODO: Chart -->
+                    <Label Grid.Row="1"
+                           VerticalAlignment="Center"
+                        HorizontalAlignment="Center">Chart</Label>
+                    
+                    <!-- TODO: Preview play/stop button -->
+                    <Label Grid.Row="2"
+                           HorizontalAlignment="Center" VerticalAlignment="Bottom">Play/Stop</Label>
+
+                </Grid>
+
+            </Grid>
+
         </materialDesign:Card>
 
 
