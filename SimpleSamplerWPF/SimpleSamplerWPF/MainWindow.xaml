@@ -76,42 +76,54 @@
             VerticalAlignment="Stretch"
             HorizontalAlignment="Stretch">
 
+            <Border BorderBrush="WhiteSmoke" BorderThickness="1">
+            
             <Grid>
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
-                <ListView Grid.Column="1"
+
+                    <ListView Grid.Column="0"
                     VerticalAlignment="Stretch"
-                    HorizontalAlignment="Left"
-                    Width="300">
-                </ListView>
+                    HorizontalAlignment="Stretch"
+                    Width="300"
+                    BorderBrush="red"
+                    BorderThickness="3">
+                        <ListViewItem Content="Data..."/>
+                    </ListView>
+                
+                <!-- I'm struggling with why an adornment like
+                a border has to be the parent control.  I feel like
+                Grid should just have borders instead... /rant -->
+                    <Border 
+                        Grid.Column="1"
+                        BorderBrush="WhiteSmoke" BorderThickness="1">
 
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="25"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="25"/>
-                    </Grid.RowDefinitions>
-                    
-                    <Label Grid.Row="0"
-                        HorizontalAlignment="Center">Selected File Name</Label>
-                    
-                    <!-- TODO: Chart -->
-                    <Label Grid.Row="1"
-                           VerticalAlignment="Center"
-                        HorizontalAlignment="Center">Chart</Label>
-                    
-                    <!-- TODO: Preview play/stop button -->
-                    <Label Grid.Row="2"
-                           HorizontalAlignment="Center" VerticalAlignment="Bottom">Play/Stop</Label>
+                        <Grid  >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="25"/>
+                            </Grid.RowDefinitions>
 
+                            <Label Grid.Row="0"
+                    HorizontalAlignment="Center">Selected File Name</Label>
+
+                            <!-- TODO: Chart -->
+                            <Label Grid.Row="1"
+                        VerticalAlignment="Center"
+                    HorizontalAlignment="Center">Chart</Label>
+
+                            <!-- TODO: Preview play/stop button -->
+                            <Label Grid.Row="2"
+                        HorizontalAlignment="Center" VerticalAlignment="Bottom">Play/Stop</Label>
+
+                        </Grid>
+                    </Border>
                 </Grid>
-
-            </Grid>
-
+            </Border>
         </materialDesign:Card>
 
 

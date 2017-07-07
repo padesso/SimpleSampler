@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:SimpleSamplerWPF.Controls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="100"
+             d:DesignHeight="250" d:DesignWidth="75"
+             Width="75"
              Margin="5,5,5,5"
              Background="WhiteSmoke"
              BorderBrush="WhiteSmoke"
@@ -41,7 +42,7 @@
             <materialDesign:PackIcon Kind="ArrowDownDropCircle" Height="15" Width="15"/>
         </Button>
 
-        <StackPanel Grid.Row="1" Grid.Column="1">
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
 
             <Slider x:Name="volumeSlider" 
                     Orientation="Vertical" 
@@ -69,9 +70,10 @@
             <Slider Name="panSlider"
                     Minimum="0" Maximum="1.0"
                     Value="0.5"
-                    Margin="0,0,0,5" />
+                    Margin="10,0,10,5" />
 
             <TextBox Name="trackNameText"
+                     TextAlignment="Center"
                      FontSize="10"
                      Height="25"
                      >
