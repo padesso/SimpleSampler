@@ -14,18 +14,16 @@
             <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
 
-        <!-- TODO: Chart -->
-        <Label Grid.Row="0"
-                        VerticalAlignment="Center"
-                    HorizontalAlignment="Center">Chart</Label>
+        <!-- Chart -->
+        <ContentPresenter Content="{Binding Visualization}" Grid.Row="0" />
 
-        <!-- TODO: Preview play/stop button -->
+        <!-- Play button -->
         <Button Grid.Row="1"
                 Width="25" Height="25"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 HorizontalAlignment="Center" VerticalAlignment="Center"
                 ToolTip="Play the selected sample."
-                Command="{Binding PlaySameplCommand}">
+                Command="{Binding PlaySampleCommand}">
 
             <materialDesign:PackIcon Kind="Play" Height="20" Width="20" />
         </Button>

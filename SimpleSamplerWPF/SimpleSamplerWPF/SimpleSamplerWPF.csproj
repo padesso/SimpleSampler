@@ -96,6 +96,8 @@
     <Compile Include="Design\MIDI\DesignMidiDeviceService.cs" />
     <Compile Include="Error\MidiDeviceServiceException.cs" />
     <Compile Include="Helpers\AutoDisposeFileReader.cs" />
+    <Compile Include="Helpers\IVisualization.cs" />
+    <Compile Include="Helpers\PolylineWaveFormVisualization.cs" />
     <Compile Include="Logic\AudioPlaybackEngine.cs" />
     <Compile Include="Logic\CachedSound.cs" />
     <Compile Include="Logic\CachedSoundSampleProvider.cs" />
