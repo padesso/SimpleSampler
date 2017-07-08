@@ -9,35 +9,20 @@ namespace SimpleSamplerWPF.Model.UI
 {
     public class TrackItem
     {
-        #region Enum
-        public enum PlaybackTypes
-        {
-            Hit,
-            Loop,
-            Hold
-        };
-        #endregion
-
         #region Members
         private float volume;
-        private bool muted;
-        private bool soloed;
         private float pan;
         private string name;
-        private PlaybackTypes playbackType;
         private int noteNumber;
         CachedSound sample;
         #endregion
 
         #region Constructors
-        public TrackItem(float volume = 0.5f, bool muted = false, bool soloed = false, float pan = 0.5f, string name = "", PlaybackTypes playbackType = PlaybackTypes.Hit)
+        public TrackItem(float volume = 0.5f, float pan = 0.5f, string name = "")
         {
             this.volume = volume;
-            this.muted = muted;
-            this.soloed = soloed;
             this.pan = pan;
             this.name = name;
-            this.playbackType = playbackType;
         }
         #endregion
 
@@ -63,32 +48,6 @@ namespace SimpleSamplerWPF.Model.UI
                 {
                     volume = value;
                 }
-            }
-        }
-
-        public bool Muted
-        {
-            get
-            {
-                return muted;
-            }
-
-            set
-            {
-                muted = value;
-            }
-        }
-
-        public bool Soloed
-        {
-            get
-            {
-                return soloed;
-            }
-
-            set
-            {
-                soloed = value;
             }
         }
 

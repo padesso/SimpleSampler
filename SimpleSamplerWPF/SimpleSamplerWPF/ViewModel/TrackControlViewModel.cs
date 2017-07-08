@@ -33,5 +33,35 @@ namespace SimpleSamplerWPF.ViewModel
                 RaisePropertyChanged("Volume", previousVolume, value, true);
             }
         }
+
+        public float Pan
+        {
+            get
+            {
+                return track.Pan;
+            }
+
+            set
+            {
+                float previousPan = track.Pan;
+                track.Pan = value;
+                RaisePropertyChanged("Pan", previousPan, value, true);
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return track.Name;
+            }
+
+            set
+            {
+                string previousName = track.Name;
+                track.Name = value;
+                RaisePropertyChanged("Name", previousName, value, true);
+            }
+        }
     }
 }

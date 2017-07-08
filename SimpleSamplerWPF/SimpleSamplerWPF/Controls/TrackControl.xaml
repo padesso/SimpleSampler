@@ -52,29 +52,14 @@
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Margin="0,0,0,5" />
 
-            <Button x:Name="muteButton"
-                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                    Height="15" Width="15"
-                    ToolTip="Mute this track."
-                    Margin="0,0,0,5" >
-                <materialDesign:PackIcon Kind="Microphone" Height="10" Width="10" />
-            </Button>
-
-            <Button x:Name="soloButton"
-                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                    Height="15" Width="15"
-                    ToolTip="Mute this track."
-                    Margin="0,0,0,5" >
-                <materialDesign:PackIcon Kind="Headphones" Height="10" Width="10" />
-            </Button>
-
             <!--TODO: figure out how to remove purple background -->
             <Slider Name="panSlider"
+                    Value="{Binding Pan, Mode=TwoWay}"
                     Minimum="0" Maximum="1.0"
-                    Value="0.5"
                     Margin="10,0,10,5" />
 
             <TextBox Name="trackNameText"
+                     Text="{Binding Name, Mode=TwoWay}"
                      TextAlignment="Center"
                      FontSize="10"
                      Height="25"
