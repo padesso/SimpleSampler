@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleSamplerWPF.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,9 @@ namespace SimpleSamplerWPF.Controls
 
         public TrackControl()
         {
-            InitializeComponent();  
+            InitializeComponent();
+
+            DataContext = new TrackControlViewModel();
         }
 
         public bool IsMaster

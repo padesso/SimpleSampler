@@ -14,7 +14,7 @@
              BorderThickness="1">
     <Grid>
 
-        <Grid.RowDefinitions>
+       <Grid.RowDefinitions>
             <RowDefinition Name="ControlRow" Height="25"/>
             <RowDefinition Name="MainRow" Height="*"/>
         </Grid.RowDefinitions>
@@ -45,6 +45,8 @@
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
 
             <Slider x:Name="volumeSlider" 
+                    Value="{Binding Volume, Mode=TwoWay}"
+                    Minimum="0.0" Maximum="1.0" 
                     Orientation="Vertical" 
                     Height="100"
                     HorizontalAlignment="Center" VerticalAlignment="Center"

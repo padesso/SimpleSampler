@@ -96,11 +96,13 @@
     <Compile Include="Logic\AudioPlaybackEngine.cs" />
     <Compile Include="Logic\CachedSound.cs" />
     <Compile Include="Logic\CachedSoundSampleProvider.cs" />
-    <Compile Include="Logic\Track.cs" />
+    <Compile Include="Logic\SamplerEngine.cs" />
+    <Compile Include="Model\UI\TrackItem.cs" />
     <Compile Include="Model\MIDI\IMidiDeviceService.cs" />
     <Compile Include="Model\MIDI\MidiDeviceService.cs" />
     <Compile Include="Model\MIDI\MidiDevicesItem.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\TrackControlViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="Controls\TrackControl.xaml">
       <SubType>Designer</SubType>

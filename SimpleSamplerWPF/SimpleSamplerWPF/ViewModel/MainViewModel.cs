@@ -15,8 +15,7 @@ namespace SimpleSamplerWPF.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private IWavePlayer waveOut;
-        private MixingSampleProvider mixer;
+        private SamplerEngine engine;
 
         private readonly IMidiDeviceService midiDeviceService;
         private ObservableCollection<string> midiDevices;
@@ -28,6 +27,8 @@ namespace SimpleSamplerWPF.ViewModel
         /// </summary>
         public MainViewModel(IMidiDeviceService midiDeviceService)
         {
+            engine = new SamplerEngine();
+
             AddTrackCommand = new RelayCommand(TestSound);
 
             this.midiDeviceService = midiDeviceService;

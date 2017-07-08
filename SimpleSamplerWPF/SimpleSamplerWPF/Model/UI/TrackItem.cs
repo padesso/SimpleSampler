@@ -1,12 +1,13 @@
-﻿using System;
+﻿using SimpleSamplerWPF.Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleSamplerWPF.Logic
+namespace SimpleSamplerWPF.Model.UI
 {
-    public class Track
+    public class TrackItem
     {
         #region Enum
         public enum PlaybackTypes
@@ -29,7 +30,7 @@ namespace SimpleSamplerWPF.Logic
         #endregion
 
         #region Constructors
-        public Track(float volume = 0.5f, bool muted = false, bool soloed = false, float pan = 0.5f, string name = "", PlaybackTypes playbackType = PlaybackTypes.Hit)
+        public TrackItem(float volume = 0.5f, bool muted = false, bool soloed = false, float pan = 0.5f, string name = "", PlaybackTypes playbackType = PlaybackTypes.Hit)
         {
             this.volume = volume;
             this.muted = muted;
