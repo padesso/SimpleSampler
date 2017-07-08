@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
@@ -20,12 +21,14 @@ namespace SimpleSamplerWPF.ViewModel
         private readonly IMidiDeviceService midiDeviceService;
         private ObservableCollection<string> midiDevices;
 
+        public RelayCommand AddTrackCommand { get; private set; }
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel(IMidiDeviceService midiDeviceService)
         {
-            //mixer = new MixingSampleProvider();
+            AddTrackCommand = new RelayCommand(TestSound);
 
             this.midiDeviceService = midiDeviceService;
             this.midiDeviceService.GetDeviceNames(
@@ -41,6 +44,12 @@ namespace SimpleSamplerWPF.ViewModel
                     //TODO: set a value and bind to UI
                     var selectedDevice = device;
                 });
+        }
+
+        public void TestSound()
+        {
+            var boom = new CachedSound(@"TestAudio\CYCdh_K1close_Kick-01.wav");
+            AudioPlaybackEngine.Instance.PlaySound(boom);
         }
 
         private void OpenFile()
