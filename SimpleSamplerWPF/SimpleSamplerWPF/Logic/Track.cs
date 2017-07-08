@@ -25,7 +25,7 @@ namespace SimpleSamplerWPF.Logic
         private string name;
         private PlaybackTypes playbackType;
         private int noteNumber;
-        SampleSource sample;
+        CachedSound sample;
         #endregion
 
         #region Constructors
@@ -141,7 +141,7 @@ namespace SimpleSamplerWPF.Logic
             }
         }
 
-        internal SampleSource Sample
+        internal CachedSound Sample
         {
             get
             {

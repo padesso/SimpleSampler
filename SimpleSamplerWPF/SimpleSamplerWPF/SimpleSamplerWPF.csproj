@@ -92,7 +92,10 @@
     </Compile>
     <Compile Include="Design\MIDI\DesignMidiDeviceService.cs" />
     <Compile Include="Error\MidiDeviceServiceException.cs" />
-    <Compile Include="Logic\SampleSource.cs" />
+    <Compile Include="Helpers\AutoDisposeFileReader.cs" />
+    <Compile Include="Logic\AudioPlaybackEngine.cs" />
+    <Compile Include="Logic\CachedSound.cs" />
+    <Compile Include="Logic\CachedSoundSampleProvider.cs" />
     <Compile Include="Logic\Track.cs" />
     <Compile Include="Model\MIDI\IMidiDeviceService.cs" />
     <Compile Include="Model\MIDI\MidiDeviceService.cs" />
