@@ -25,7 +25,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Name="MenuRow" Height="auto"/>
             <RowDefinition Name="ExplorerRow" Height="*"/>
-            <RowDefinition Name="TrackRow" Height="275"/>
+            <RowDefinition Name="TrackRow" Height="225"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -93,35 +93,13 @@
                     BorderThickness="3">
                         <ListViewItem Content="Data..."/>
                     </ListView>
-                
-                <!-- I'm struggling with why an adornment like
-                a border has to be the parent control.  I feel like
-                Grid should just have borders instead... /rant -->
-                    <Border 
+
+                    <user:VisualizerControl
                         Grid.Column="1"
-                        BorderBrush="WhiteSmoke" BorderThickness="1">
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"/>
+                
 
-                        <Grid  >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="25"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="25"/>
-                            </Grid.RowDefinitions>
-
-                            <Label Grid.Row="0"
-                    HorizontalAlignment="Center">Selected File Name</Label>
-
-                            <!-- TODO: Chart -->
-                            <Label Grid.Row="1"
-                        VerticalAlignment="Center"
-                    HorizontalAlignment="Center">Chart</Label>
-
-                            <!-- TODO: Preview play/stop button -->
-                            <Label Grid.Row="2"
-                        HorizontalAlignment="Center" VerticalAlignment="Bottom">Play/Stop</Label>
-
-                        </Grid>
-                    </Border>
                 </Grid>
             </Border>
         </materialDesign:Card>
