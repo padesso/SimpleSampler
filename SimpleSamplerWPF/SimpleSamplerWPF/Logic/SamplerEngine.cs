@@ -14,10 +14,13 @@ namespace SimpleSamplerWPF.Logic
 
         private List<TrackItem> tracks;
         private List<CachedSound> samples;
-        
+
+        //TEST ONLY
+        CachedSound boom = new CachedSound(@"TestAudio\CYCdh_K1close_Kick-01.wav");
+
         public SamplerEngine()
         {
-
+            tracks = new List<TrackItem>();
         }
 
         public List<TrackItem> Tracks
@@ -58,12 +61,12 @@ namespace SimpleSamplerWPF.Logic
                 //Clean up the existing input
                 if (midiIn != null)
                 {
-                    midiIn.Dispose();
-                    midiIn = null;
-
                     //Reset the event handlers
                     midiIn.MessageReceived -= MidiIn_MessageReceived;
                     midiIn.ErrorReceived += MidiIn_ErrorReceived;
+
+                    midiIn.Dispose();
+                    midiIn = null;
                 }
 
                 midiIn = value;
@@ -81,6 +84,24 @@ namespace SimpleSamplerWPF.Logic
         {
             //TODO: Route events to all tracks and play if appropriate.
             Console.WriteLine("Midi In: " + e.MidiEvent.ToString());
+
+            //Only allow note on events for now - TODO: convert to switch statement
+            if (e.MidiEvent.CommandCode != MidiCommandCode.NoteOn)
+                return;
+
+            //TODO: this should be a dictionary or something with a better fetch time
+            for (int trackIndex = 0; trackIndex < tracks.Count; trackIndex++)
+            {
+                Console.WriteLine(tracks[trackIndex].NoteNumber);
+
+                if(tracks[trackIndex].NoteNumber == ((NoteOnEvent)e.MidiEvent).NoteNumber)
+                {
+                    //TODO: play sound
+                }
+            }
+
+            
+            AudioPlaybackEngine.Instance.PlaySound(boom);
         }
 
         private void MidiIn_ErrorReceived(object sender, MidiInMessageEventArgs e)
