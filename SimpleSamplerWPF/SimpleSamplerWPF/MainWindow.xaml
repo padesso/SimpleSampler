@@ -11,7 +11,7 @@
         Width="800"
         Title="Simple Sampler"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
-    
+
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -66,7 +66,8 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Width="200"
-                ItemsSource="{Binding MidiDevices}">
+                ItemsSource="{Binding MidiDevices}"
+                SelectedIndex="{Binding SelectedMidiDeviceIndex, Mode=TwoWay}">
             </ComboBox>
         </StackPanel>
 
@@ -77,13 +78,14 @@
             HorizontalAlignment="Stretch">
 
             <Border BorderBrush="WhiteSmoke" BorderThickness="1">
-            
-            <Grid>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="81*"/>
+                        <ColumnDefinition Width="35*"/>
+                    </Grid.ColumnDefinitions>
 
                     <ListView Grid.Column="0"
                     VerticalAlignment="Stretch"
@@ -98,7 +100,6 @@
                         Grid.Column="1"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"/>
-                
 
                 </Grid>
             </Border>
@@ -118,15 +119,15 @@
             </StackPanel>
 
         </materialDesign:Card>
-        
+
         <!-- Master -->
         <materialDesign:Card  
             Padding="5" Margin="5" 
             Grid.Row="2" Grid.Column="4"
             VerticalAlignment="Stretch">
-            
+
             <user:TrackControl IsMaster="True"/>
-            
+
         </materialDesign:Card>
 
         <Button Grid.Row="2" Grid.Column="3"
@@ -134,7 +135,7 @@
                 Margin="5 5 5 5" HorizontalAlignment="Center" VerticalAlignment="Top"
                 ToolTip="Add a track."
                 Command="{Binding AddTrackCommand}">
-            
+
             <materialDesign:PackIcon Kind="Plus" Height="20" Width="20" />
         </Button>
     </Grid>

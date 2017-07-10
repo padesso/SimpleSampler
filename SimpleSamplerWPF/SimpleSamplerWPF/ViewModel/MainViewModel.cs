@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
+using NAudio.Midi;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using SimpleSamplerWPF.Logic;
@@ -15,19 +16,21 @@ namespace SimpleSamplerWPF.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private SamplerEngine engine;
+        private SamplerEngine samplerEngine;
 
         private readonly IMidiDeviceService midiDeviceService;
         private ObservableCollection<string> midiDevices;
 
-        public RelayCommand AddTrackCommand { get; private set; }
+        private int selectedMidiDeviceIndex = -1;
 
+        public RelayCommand AddTrackCommand { get; private set; }
+       
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel(IMidiDeviceService midiDeviceService)
         {
-            engine = new SamplerEngine();
+            samplerEngine = new SamplerEngine();
 
             AddTrackCommand = new RelayCommand(TestSound);
 
@@ -80,8 +83,20 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        public int SelectedMidiDeviceIndex
+        {
+            get
+            {
+                return selectedMidiDeviceIndex;
+            }
 
-        
+            set
+            {
+                Set(ref selectedMidiDeviceIndex, value);
+
+                samplerEngine.MidiIn = new MidiIn(SelectedMidiDeviceIndex);
+            }
+        }
 
         ////public override void Cleanup()
         ////{

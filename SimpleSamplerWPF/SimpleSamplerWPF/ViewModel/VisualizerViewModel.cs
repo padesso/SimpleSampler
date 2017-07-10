@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SimpleSamplerWPF.Helpers;
+using SimpleSamplerWPF.Helpers.Events;
 using SimpleSamplerWPF.Logic;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,12 @@ namespace SimpleSamplerWPF.ViewModel
         {
             visualization = new PolylineWaveFormVisualization();
 
-            PlaySampleCommand = new RelayCommand(PlaySample, SampleLoaded);
+            AudioPlaybackEngine.Instance.MaximumCalculated += audioGraph_MaximumCalculated;
+            AudioPlaybackEngine.Instance.FftCalculated += audioGraph_FftCalculated;
+
+            PlaySampleCommand = new RelayCommand(PlaySample, IsSampleLoaded);
+
+            //TODO: hook into the FFT events to create the waveform
 
             //TEST ONLY!
             sample = new CachedSound(@"TestAudio\CYCdh_K1close_Kick-01.wav");
@@ -32,11 +38,13 @@ namespace SimpleSamplerWPF.ViewModel
         /// </summary>
         public void PlaySample()
         {
+            AudioPlaybackEngine.Instance.ReadWaveForm(sample);
+
             if (sample != null)
                 AudioPlaybackEngine.Instance.PlaySound(sample);
         }
 
-        private bool SampleLoaded()
+        private bool IsSampleLoaded()
         {
             //TODO: do we need to look at other params?
             if (sample == null)
@@ -63,6 +71,22 @@ namespace SimpleSamplerWPF.ViewModel
             get
             {
                 return this.visualization.Content;
+            }
+        }
+
+        void audioGraph_FftCalculated(object sender, FftEventArgs e)
+        {
+            if (this.visualization != null)
+            {
+                this.visualization.OnFftCalculated(e.Result);
+            }
+        }
+
+        void audioGraph_MaximumCalculated(object sender, MaxSampleEventArgs e)
+        {
+            if (this.visualization != null)
+            {
+                this.visualization.OnMaxCalculated(e.MinSample, e.MaxSample);
             }
         }
     }

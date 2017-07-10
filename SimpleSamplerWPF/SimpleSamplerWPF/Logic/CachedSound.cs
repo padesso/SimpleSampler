@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SimpleSamplerWPF.Logic
 {
-    class CachedSound
+    public class CachedSound
     {
         public float[] AudioData { get; private set; }
         public WaveFormat WaveFormat { get; private set; }
