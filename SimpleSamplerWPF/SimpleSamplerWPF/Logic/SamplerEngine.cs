@@ -16,7 +16,7 @@ namespace SimpleSamplerWPF.Logic
         private List<CachedSound> samples;
 
         //TEST ONLY
-        CachedSound boom = new CachedSound(@"TestAudio\CYCdh_K1close_Kick-01.wav");
+        CachedSound boom = new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav");
 
         public SamplerEngine()
         {
@@ -61,9 +61,11 @@ namespace SimpleSamplerWPF.Logic
                 //Clean up the existing input
                 if (midiIn != null)
                 {
+                    midiIn.Stop();
+
                     //Reset the event handlers
                     midiIn.MessageReceived -= MidiIn_MessageReceived;
-                    midiIn.ErrorReceived += MidiIn_ErrorReceived;
+                    midiIn.ErrorReceived -= MidiIn_ErrorReceived;
 
                     midiIn.Dispose();
                     midiIn = null;
@@ -83,22 +85,22 @@ namespace SimpleSamplerWPF.Logic
         private void MidiIn_MessageReceived(object sender, MidiInMessageEventArgs e)
         {
             //TODO: Route events to all tracks and play if appropriate.
-            Console.WriteLine("Midi In: " + e.MidiEvent.ToString());
+            //Console.WriteLine("Midi In: " + e.MidiEvent.ToString());
 
             //Only allow note on events for now - TODO: convert to switch statement
             if (e.MidiEvent.CommandCode != MidiCommandCode.NoteOn)
                 return;
 
             //TODO: this should be a dictionary or something with a better fetch time
-            for (int trackIndex = 0; trackIndex < tracks.Count; trackIndex++)
-            {
-                Console.WriteLine(tracks[trackIndex].NoteNumber);
+            //for (int trackIndex = 0; trackIndex < tracks.Count; trackIndex++)
+            //{
+            //    Console.WriteLine(tracks[trackIndex].NoteNumber);
 
-                if(tracks[trackIndex].NoteNumber == ((NoteOnEvent)e.MidiEvent).NoteNumber)
-                {
-                    //TODO: play sound
-                }
-            }
+            //    if(tracks[trackIndex].NoteNumber == ((NoteOnEvent)e.MidiEvent).NoteNumber)
+            //    {
+            //        //TODO: play sound
+            //    }
+            //}
 
             
             AudioPlaybackEngine.Instance.PlaySound(boom);

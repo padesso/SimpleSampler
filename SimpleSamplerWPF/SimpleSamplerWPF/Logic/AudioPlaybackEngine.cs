@@ -19,9 +19,9 @@ namespace SimpleSamplerWPF.Logic
         public event EventHandler<FftEventArgs> FftCalculated;
         public event EventHandler<MaxSampleEventArgs> MaximumCalculated;
 
-        public AudioPlaybackEngine(int sampleRate = 44100, int channelCount = 2)
+        public AudioPlaybackEngine(int sampleRate = 44100, int channelCount = 8)
         {
-            outputDevice = new WaveOutEvent();
+            outputDevice = new DirectSoundOut();
             mixer = new MixingSampleProviderFFT(WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channelCount));
             mixer.ReadFully = true;
             outputDevice.Init(mixer);
