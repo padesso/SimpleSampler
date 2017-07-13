@@ -87,19 +87,14 @@
                         <ColumnDefinition Width="35*"/>
                     </Grid.ColumnDefinitions>
 
-                    <ListView Grid.Column="0"
-                    VerticalAlignment="Stretch"
-                    HorizontalAlignment="Stretch"
-                    Width="300"
-                    BorderBrush="red"
-                    BorderThickness="3">
-                        <ListViewItem Content="Data..."/>
-                    </ListView>
-
-                    <user:VisualizerControl
-                        Grid.Column="1"
+                    <user:SampleLibraryControl
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"/>
+
+                    <!--<user:VisualizerControl
+                        Grid.Column="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"/>-->
 
                 </Grid>
             </Border>

@@ -90,6 +90,9 @@
     <Compile Include="Controls\PolylineWaveFormControl.xaml.cs">
       <DependentUpon>PolylineWaveFormControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SampleLibraryControl.xaml.cs">
+      <DependentUpon>SampleLibraryControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TrackControl.xaml.cs">
       <DependentUpon>TrackControl.xaml</DependentUpon>
     </Compile>
@@ -114,10 +117,15 @@
     <Compile Include="Model\MIDI\MidiDeviceService.cs" />
     <Compile Include="Model\MIDI\MidiDevicesItem.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SampleLibraryControlViewModel.cs" />
     <Compile Include="ViewModel\TrackControlViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\VisualizerViewModel.cs" />
     <Page Include="Controls\PolylineWaveFormControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SampleLibraryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
