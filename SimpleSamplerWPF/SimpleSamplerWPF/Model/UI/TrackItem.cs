@@ -14,7 +14,7 @@ namespace SimpleSamplerWPF.Model.UI
         private float pan;
         private string name;
         private int noteNumber;
-        CachedSound sample;
+        Sample sample;
         #endregion
 
         #region Constructors
@@ -101,7 +101,7 @@ namespace SimpleSamplerWPF.Model.UI
             }
         }
 
-        internal CachedSound Sample
+        internal Sample Sample
         {
             get
             {

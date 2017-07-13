@@ -111,6 +111,7 @@
     <Compile Include="Logic\CachedSound.cs" />
     <Compile Include="Logic\CachedSoundSampleProvider.cs" />
     <Compile Include="Logic\MixingSampleProviderFFT.cs" />
+    <Compile Include="Logic\Sample.cs" />
     <Compile Include="Logic\SamplerEngine.cs" />
     <Compile Include="Model\UI\TrackItem.cs" />
     <Compile Include="Model\MIDI\IMidiDeviceService.cs" />

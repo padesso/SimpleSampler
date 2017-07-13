@@ -9,12 +9,13 @@
     <Grid>
 
         <ListView Grid.Column="0"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"
-                        Width="300"
-                        BorderBrush="red"
-                        BorderThickness="3">
-            <ListViewItem Content="Data..."/>
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Width="300"
+                BorderBrush="red"
+                BorderThickness="3"
+                ItemsSource="{Binding Samples}"
+                  DisplayMemberPath="Name">
         </ListView>
 
     </Grid>
