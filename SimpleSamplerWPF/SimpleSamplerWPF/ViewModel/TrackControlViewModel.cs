@@ -6,12 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Messaging;
 using SimpleSamplerWPF.Model.UI;
+using System.Windows.Media;
 
 namespace SimpleSamplerWPF.ViewModel
 {
     public class TrackControlViewModel : ViewModelBase
     {
         private TrackItem track;
+        private bool learnMode;
+        private Color borderColor = Colors.Red;
 
         public TrackControlViewModel()
         {
@@ -61,6 +64,19 @@ namespace SimpleSamplerWPF.ViewModel
                 string previousName = track.Name;
                 track.Name = value;
                 RaisePropertyChanged("Name", previousName, value, true);
+            }
+        }
+
+        public bool LearnMode
+        {
+            get
+            {
+                return learnMode;
+            }
+
+            set
+            {  
+                Set(ref learnMode, value);
             }
         }
     }

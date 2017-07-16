@@ -10,11 +10,24 @@
              Width="75"
              Margin="5,5,5,5"
              Background="WhiteSmoke"
-             BorderBrush="WhiteSmoke"
              BorderThickness="1">
-    <Grid>
 
-       <Grid.RowDefinitions>
+    <Border BorderThickness="2">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding LearnMode}" Value="True">
+                        <Setter Property="BorderBrush" Value="DarkRed"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding LearnMode}" Value="False">
+                        <Setter Property="BorderBrush" Value="WhiteSmoke"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+
+        <Grid>
+        <Grid.RowDefinitions>
             <RowDefinition Name="ControlRow" Height="25"/>
             <RowDefinition Name="MainRow" Height="*"/>
         </Grid.RowDefinitions>
@@ -67,6 +80,6 @@
             </TextBox>
 
         </StackPanel>
-
     </Grid>
+    </Border>
 </UserControl>
