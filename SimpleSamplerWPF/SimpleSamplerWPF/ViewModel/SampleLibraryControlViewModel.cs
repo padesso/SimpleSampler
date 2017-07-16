@@ -18,11 +18,11 @@ namespace SimpleSamplerWPF.ViewModel
             Samples = new ObservableCollection<Sample>();
 
             //TEST:
-            Samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "test name 1"));
-            Samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "test name 2"));
-            Samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "test name 3"));
-            Samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "test name 4"));
-            Samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "test name 5"));
+            //Samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "test name 1"));
+            //Samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "test name 2"));
+            //Samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "test name 3"));
+            //Samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "test name 4"));
+            //Samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "test name 5"));
         }
 
         public ObservableCollection<Sample> Samples

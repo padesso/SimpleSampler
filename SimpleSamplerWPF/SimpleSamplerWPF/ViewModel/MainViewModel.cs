@@ -4,6 +4,7 @@ using Microsoft.Win32;
 using NAudio.Midi;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
+using SimpleSamplerWPF.Controls;
 using SimpleSamplerWPF.Logic;
 using SimpleSamplerWPF.Model;
 using SimpleSamplerWPF.Model.MIDI;
@@ -21,6 +22,8 @@ namespace SimpleSamplerWPF.ViewModel
         private readonly IMidiDeviceService midiDeviceService;
         private ObservableCollection<string> midiDevices;
 
+        private ObservableCollection<TrackControl> trackControls;
+
         private int selectedMidiDeviceIndex = -1;
 
         public RelayCommand AddTrackCommand { get; private set; }
@@ -32,7 +35,8 @@ namespace SimpleSamplerWPF.ViewModel
         {
             samplerEngine = new SamplerEngine();
 
-            AddTrackCommand = new RelayCommand(TestSound);
+            trackControls = new ObservableCollection<TrackControl>();
+            AddTrackCommand = new RelayCommand(AddTrack);
 
             this.midiDeviceService = midiDeviceService;
             this.midiDeviceService.GetDeviceNames(
@@ -42,12 +46,18 @@ namespace SimpleSamplerWPF.ViewModel
                 });
 
             //TODO: pass selected index of device dropdown
-            this.midiDeviceService.GetDevice(0,
-                (device, error) =>
-                {
-                    //TODO: set a value and bind to UI
-                    var selectedDevice = device;
-                });
+            //this.midiDeviceService.GetDevice(0,
+            //    (device, error) =>
+            //    {
+            //        //TODO: set a value and bind to UI
+            //        var selectedDevice = device;
+            //    });
+        }
+
+        public void AddTrack()
+        {
+            TrackControl tc = new TrackControl();
+            trackControls.Add(tc);
         }
 
         public void TestSound()
@@ -95,6 +105,19 @@ namespace SimpleSamplerWPF.ViewModel
                 Set(ref selectedMidiDeviceIndex, value);
 
                 samplerEngine.MidiIn = new MidiIn(SelectedMidiDeviceIndex);
+            }
+        }
+
+        public ObservableCollection<TrackControl> TrackControls
+        {
+            get
+            {
+                return trackControls;
+            }
+
+            set
+            {
+                Set(ref trackControls, value);
             }
         }
 

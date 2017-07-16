@@ -25,7 +25,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Name="MenuRow" Height="auto"/>
             <RowDefinition Name="ExplorerRow" Height="*"/>
-            <RowDefinition Name="TrackRow" Height="225"/>
+            <RowDefinition Name="TrackRow" Height="250"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -100,19 +100,31 @@
             </Border>
         </materialDesign:Card>
 
-
         <materialDesign:Card  
             Padding="5" Margin="5" 
             Grid.Row="2" Grid.ColumnSpan="3"
             VerticalAlignment="Stretch">
 
-            <StackPanel Orientation="Horizontal" >
-                <user:TrackControl/>
-                <user:TrackControl/>
-                <user:TrackControl/>
-                <user:TrackControl/>
-            </StackPanel>
+            <ScrollViewer 
+                HorizontalScrollBarVisibility="Visible"
+                VerticalScrollBarVisibility="Hidden">
+                <ItemsControl ItemsSource="{Binding TrackControls}" >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel 
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <user:TrackControl />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </materialDesign:Card>
 
         <!-- Master -->
