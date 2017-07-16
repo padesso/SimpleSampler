@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SimpleSamplerWPF.Controls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:SimpleSamplerWPF.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="75"
              Width="75"
@@ -12,6 +13,11 @@
              Background="WhiteSmoke"
              BorderThickness="1">
 
+    <UserControl.Resources>
+        <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </UserControl.Resources>
+    
     <Border BorderThickness="2">
         <Border.Style>
             <Style TargetType="Border">
@@ -42,7 +48,8 @@
                 Height="20" Width="20"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"
-                ToolTip="Delete track.">
+                ToolTip="Delete track."
+                Visibility="{Binding IsMaster, Converter={StaticResource BoolToVisibilityConverter}}">
             <materialDesign:PackIcon Kind="Minus" Height="15" Width="15" />
         </Button>
 
@@ -51,7 +58,9 @@
                 Height="20" Width="20"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"
-                ToolTip="Select sample playback type.">
+                ToolTip="Select sample playback type."
+                Command="{Binding ToggleLearnModeCommand}"
+                Visibility="{Binding IsMaster, Converter={StaticResource BoolToVisibilityConverter}}">
             <materialDesign:PackIcon Kind="ArrowDownDropCircle" Height="15" Width="15"/>
         </Button>
 
@@ -76,7 +85,7 @@
                      TextAlignment="Center"
                      FontSize="10"
                      Height="25"
-                     >
+                     IsEnabled="{Binding IsMaster, Converter={StaticResource InverseBooleanConverter}}">
             </TextBox>
 
         </StackPanel>

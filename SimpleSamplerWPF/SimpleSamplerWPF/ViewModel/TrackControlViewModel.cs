@@ -7,19 +7,32 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Messaging;
 using SimpleSamplerWPF.Model.UI;
 using System.Windows.Media;
+using GalaSoft.MvvmLight.Command;
 
 namespace SimpleSamplerWPF.ViewModel
 {
     public class TrackControlViewModel : ViewModelBase
     {
+        private bool isMaster;
         private TrackItem track;
         private bool learnMode;
         private Color borderColor = Colors.Red;
 
+        public RelayCommand ToggleLearnModeCommand { get; private set; }
+
         public TrackControlViewModel()
         {
+            IsMaster = false;
+
+            ToggleLearnModeCommand = new RelayCommand(ToggleLearnMode);
+
             //TODO: get the tracks from a service or something
             track = new TrackItem();
+        }
+
+        private void ToggleLearnMode()
+        {
+            LearnMode = !LearnMode;
         }
 
         public float Volume
@@ -77,6 +90,19 @@ namespace SimpleSamplerWPF.ViewModel
             set
             {  
                 Set(ref learnMode, value);
+            }
+        }
+
+        public bool IsMaster
+        {
+            get
+            {
+                return isMaster;
+            }
+
+            set
+            {
+                Set(ref isMaster, value);
             }
         }
     }

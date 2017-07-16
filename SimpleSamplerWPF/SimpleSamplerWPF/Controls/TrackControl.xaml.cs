@@ -21,32 +21,11 @@ namespace SimpleSamplerWPF.Controls
     /// </summary>
     public partial class TrackControl : UserControl
     {
-        private bool isMaster = false;
-
         public TrackControl()
         {
             InitializeComponent();
 
             DataContext = new TrackControlViewModel();
-        }
-
-        public bool IsMaster
-        {
-            get
-            {
-                return isMaster;
-            }
-
-            set
-            {
-                isMaster = value;
-
-                if (isMaster)
-                {
-                    trackNameText.IsEnabled = false;
-                    trackNameText.Text = "Master";
-                }
-            }
-        }
+        }   
     }
 }
