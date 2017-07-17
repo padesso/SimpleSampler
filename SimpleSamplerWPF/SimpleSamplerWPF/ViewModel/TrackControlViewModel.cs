@@ -8,6 +8,8 @@ using GalaSoft.MvvmLight.Messaging;
 using SimpleSamplerWPF.Model.UI;
 using System.Windows.Media;
 using GalaSoft.MvvmLight.Command;
+using NAudio.Midi;
+using SimpleSamplerWPF.Logic;
 
 namespace SimpleSamplerWPF.ViewModel
 {
@@ -17,6 +19,7 @@ namespace SimpleSamplerWPF.ViewModel
         private TrackItem track;
         private bool learnMode;
         private Color borderColor = Colors.Red;
+        private NoteOnEvent noteOnMessage;
 
         public RelayCommand ToggleLearnModeCommand { get; private set; }
 
@@ -27,6 +30,13 @@ namespace SimpleSamplerWPF.ViewModel
             ToggleLearnModeCommand = new RelayCommand(ToggleLearnMode);
 
             track = new TrackItem();
+
+            Messenger.Default.Register<NoteOnEvent>( this, m => NoteOnMessage = m);
+        }
+
+        private void MessageReceived()
+        {
+
         }
 
         private void ToggleLearnMode()
@@ -102,6 +112,29 @@ namespace SimpleSamplerWPF.ViewModel
             set
             {
                 Set(ref isMaster, value);
+            }
+        }
+
+        public NoteOnEvent NoteOnMessage
+        {
+            get
+            {
+                return noteOnMessage;
+            }
+
+            set
+            {
+                
+                Set(ref noteOnMessage, value);
+
+                // Check if note is good for this track and play sample if so
+                if (noteOnMessage.NoteNumber == track.NoteNumber)
+                {
+                    if(track.Sample != null)
+                    {
+                        AudioPlaybackEngine.Instance.PlaySound(track.Sample.CachedSound);
+                    }
+                }
             }
         }
     }
