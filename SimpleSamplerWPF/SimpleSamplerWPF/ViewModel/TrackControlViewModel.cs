@@ -26,7 +26,6 @@ namespace SimpleSamplerWPF.ViewModel
 
             ToggleLearnModeCommand = new RelayCommand(ToggleLearnMode);
 
-            //TODO: get the tracks from a service or something
             track = new TrackItem();
         }
 

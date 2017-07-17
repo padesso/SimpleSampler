@@ -17,7 +17,7 @@ namespace SimpleSamplerWPF.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private SamplerEngine samplerEngine;
+        private MidiEngine samplerEngine;
 
         private readonly IMidiDeviceService midiDeviceService;
         private ObservableCollection<string> midiDevices;
@@ -27,16 +27,18 @@ namespace SimpleSamplerWPF.ViewModel
         private int selectedMidiDeviceIndex = -1;
 
         public RelayCommand AddTrackCommand { get; private set; }
-       
+        public RelayCommand DeleteTrackCommand { get; private set; }
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel(IMidiDeviceService midiDeviceService)
         {
-            samplerEngine = new SamplerEngine();
+            samplerEngine = new MidiEngine();
 
             trackControls = new ObservableCollection<TrackControl>();
             AddTrackCommand = new RelayCommand(AddTrack);
+            DeleteTrackCommand = new RelayCommand(DeleteTrack);
 
             this.midiDeviceService = midiDeviceService;
             this.midiDeviceService.GetDeviceNames(
@@ -58,6 +60,12 @@ namespace SimpleSamplerWPF.ViewModel
         {
             TrackControl tc = new TrackControl();
             trackControls.Add(tc);
+        }
+
+        public void DeleteTrack()
+        {
+            //TODO: Find a good way to remove the track
+            //trackControls.Remove();
         }
 
         public void TestSound()
