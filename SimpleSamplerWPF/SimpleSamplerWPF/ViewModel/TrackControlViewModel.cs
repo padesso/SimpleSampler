@@ -34,11 +34,6 @@ namespace SimpleSamplerWPF.ViewModel
             Messenger.Default.Register<NoteOnEvent>( this, m => NoteOnMessage = m);
         }
 
-        private void MessageReceived()
-        {
-
-        }
-
         private void ToggleLearnMode()
         {
             LearnMode = !LearnMode;
@@ -123,12 +118,16 @@ namespace SimpleSamplerWPF.ViewModel
             }
 
             set
-            {
-                
+            {           
+                //TODO: figure out why this is firing twice per hit     
                 Set(ref noteOnMessage, value);
 
-                // Check if note is good for this track and play sample if so
-                if (noteOnMessage.NoteNumber == track.NoteNumber)
+                if(learnMode)
+                {
+                    track.NoteNumber = noteOnMessage.NoteNumber;
+                    LearnMode = false;
+                }                
+                else if (noteOnMessage.NoteNumber == track.NoteNumber)  // Check if note is good for this track and play sample if so
                 {
                     if(track.Sample != null)
                     {

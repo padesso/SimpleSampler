@@ -4,11 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SimpleSamplerWPF.Controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
 
-        <ListView Grid.Column="0"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <Button 
+                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Margin="5 5 5 5" HorizontalAlignment="Center" VerticalAlignment="Top"
+                ToolTip="Add a track."
+                Command="{Binding AddSampleCommand}">
+                <materialDesign:PackIcon Kind="Plus" Height="20" Width="20" />
+            </Button>
+
+            <Button 
+                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Margin="5 5 5 5" HorizontalAlignment="Center" VerticalAlignment="Top"
+                ToolTip="Add a track."
+                Command="{Binding DeleteSampleCommand}">
+                <materialDesign:PackIcon Kind="Minus" Height="20" Width="20" />
+            </Button>
+        </StackPanel>
+            
+        <ListView Grid.Column="1"
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
                 Width="300"
