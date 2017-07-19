@@ -12,6 +12,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using SimpleSamplerWPF.Design.Audio;
 using SimpleSamplerWPF.Design.MIDI;
 using SimpleSamplerWPF.Model;
 using SimpleSamplerWPF.Model.Audio;
@@ -35,6 +36,7 @@ namespace SimpleSamplerWPF.ViewModel
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 SimpleIoc.Default.Register<IMidiDeviceService, DesignMidiDeviceService>();
+                SimpleIoc.Default.Register<ISampleService, DesignSampleService>();
             }
             else
             {

@@ -1,14 +1,14 @@
-﻿using System;
+﻿using SimpleSamplerWPF.Logic;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SimpleSamplerWPF.Logic;
 
-namespace SimpleSamplerWPF.Model.Audio
+namespace SimpleSamplerWPF.Design.Audio
 {
-    public class SampleService : ISampleService
+    public class DesignSampleService
     {
         public void GetSamples(Action<ObservableCollection<Sample>, Exception> callback)
         {
@@ -25,7 +25,7 @@ namespace SimpleSamplerWPF.Model.Audio
         {
             throw new NotImplementedException();
         }
-        
+
         public void RemoveSample(Sample sound, Action<bool, Exception> callback)
         {
             throw new NotImplementedException();

@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\InverseBooleanConverter.cs" />
+    <Compile Include="Design\Audio\DesignSampleService.cs" />
     <Compile Include="Design\MIDI\DesignMidiDeviceService.cs" />
     <Compile Include="Error\MidiDeviceServiceException.cs" />
     <Compile Include="Helpers\AutoDisposeFileReader.cs" />
