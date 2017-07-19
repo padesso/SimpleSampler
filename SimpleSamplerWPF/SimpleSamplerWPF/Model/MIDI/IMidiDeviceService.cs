@@ -12,7 +12,6 @@ namespace SimpleSamplerWPF.Model.MIDI
     {
         void GetDeviceNames(Action<ObservableCollection<string>, Exception> callback);
 
-        //TODO: how to pass a value to get the selected MidiIn???
         void GetDevice(int deviceID, Action<MidiInCapabilities, Exception> callback);
     }
 }

@@ -115,6 +115,8 @@
     <Compile Include="Logic\MixingSampleProviderFFT.cs" />
     <Compile Include="Logic\Sample.cs" />
     <Compile Include="Logic\MidiEngine.cs" />
+    <Compile Include="Model\Audio\ISampleService.cs" />
+    <Compile Include="Model\Audio\SampleService.cs" />
     <Compile Include="Model\UI\TrackItem.cs" />
     <Compile Include="Model\MIDI\IMidiDeviceService.cs" />
     <Compile Include="Model\MIDI\MidiDeviceService.cs" />

@@ -16,6 +16,7 @@
 
         <StackPanel Grid.Column="0">
             <Button 
+                Width="25" Height="25"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 Margin="5 5 5 5" HorizontalAlignment="Center" VerticalAlignment="Top"
                 ToolTip="Add a track."
@@ -24,6 +25,7 @@
             </Button>
 
             <Button 
+                Width="25" Height="25"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 Margin="5 5 5 5" HorizontalAlignment="Center" VerticalAlignment="Top"
                 ToolTip="Add a track."
