@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using SimpleSamplerWPF.Logic;
+using SimpleSamplerWPF.Model.Audio;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,18 +12,17 @@ namespace SimpleSamplerWPF.ViewModel
 {
     public class SampleLibraryControlViewModel : ViewModelBase
     {
+        ISampleService sampleService;
         private ObservableCollection<Sample> samples;
-
-        public SampleLibraryControlViewModel()
+        
+        public SampleLibraryControlViewModel(ISampleService sampleService)
         {
-            Samples = new ObservableCollection<Sample>();
-
-            //TEST:
-            //Samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "test name 1"));
-            //Samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "test name 2"));
-            //Samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "test name 3"));
-            //Samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "test name 4"));
-            //Samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "test name 5"));
+            this.sampleService = sampleService;
+            this.sampleService.GetSamples(
+                (samp, error) =>
+                {
+                    Samples = samp;
+                });
         }
 
         public ObservableCollection<Sample> Samples

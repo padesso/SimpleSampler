@@ -1,4 +1,6 @@
-﻿using SimpleSamplerWPF.ViewModel;
+﻿using Microsoft.Practices.ServiceLocation;
+using SimpleSamplerWPF.Model.Audio;
+using SimpleSamplerWPF.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +27,7 @@ namespace SimpleSamplerWPF.Controls
         {
             InitializeComponent();
 
-            DataContext = new SampleLibraryControlViewModel();
+            DataContext = new SampleLibraryControlViewModel(ServiceLocator.Current.GetInstance<ISampleService>());
         }
     }
 }

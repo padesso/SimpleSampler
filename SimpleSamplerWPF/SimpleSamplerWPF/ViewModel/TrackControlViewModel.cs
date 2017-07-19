@@ -10,6 +10,8 @@ using System.Windows.Media;
 using GalaSoft.MvvmLight.Command;
 using NAudio.Midi;
 using SimpleSamplerWPF.Logic;
+using SimpleSamplerWPF.Model.Audio;
+using System.Collections.ObjectModel;
 
 namespace SimpleSamplerWPF.ViewModel
 {
@@ -23,8 +25,13 @@ namespace SimpleSamplerWPF.ViewModel
 
         public RelayCommand ToggleLearnModeCommand { get; private set; }
 
-        public TrackControlViewModel()
+        ISampleService sampleService;
+        private ObservableCollection<Sample> samples;
+
+        public TrackControlViewModel(ISampleService sampleService)
         {
+            this.sampleService = sampleService;
+
             IsMaster = false;
 
             ToggleLearnModeCommand = new RelayCommand(ToggleLearnMode);

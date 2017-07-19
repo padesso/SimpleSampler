@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace SimpleSamplerWPF.Model.Audio
 {
-    interface ISampleService
+    public interface ISampleService
     {
-        void GetSamples(Action<ObservableCollection<CachedSound>, Exception> callback);
-        void AddSample(CachedSound sound, Action<bool, Exception> callback);
-        void RemoveSample(CachedSound sound, Action<bool, Exception> callback);
+        void GetSamples(Action<ObservableCollection<Sample>, Exception> callback);
+        void AddSample(Sample sound, Action<bool, Exception> callback);
+        void RemoveSample(Sample sound, Action<bool, Exception> callback);
     }
 }
