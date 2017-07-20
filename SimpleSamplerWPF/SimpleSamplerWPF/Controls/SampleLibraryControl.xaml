@@ -41,7 +41,8 @@
                 BorderBrush="red"
                 BorderThickness="3"
                 ItemsSource="{Binding Samples}"
-                  DisplayMemberPath="Name">
+                SelectedItem="{Binding SelectedSample, Mode=TwoWay}"
+                DisplayMemberPath="Name">
         </ListView>
 
     </Grid>

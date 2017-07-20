@@ -17,11 +17,15 @@ namespace SimpleSamplerWPF.ViewModel
         ISampleService sampleService;
         private ObservableCollection<Sample> samples;
 
+        private Sample selectedSample;
+
         public RelayCommand AddSampleCommand { get; private set; }
+        public RelayCommand DeleteSampleCommand { get; private set; }
 
         public SampleLibraryControlViewModel(ISampleService sampleService)
         {
             AddSampleCommand = new RelayCommand(AddSample);
+            DeleteSampleCommand = new RelayCommand(DeleteSample, CanDelete);
 
             this.sampleService = sampleService;
             this.sampleService.GetSamples(
@@ -44,6 +48,21 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        private void DeleteSample()
+        {
+            //safety check
+            if(selectedSample != null)
+                this.sampleService.RemoveSample(selectedSample);
+        }
+
+        public bool CanDelete()
+        {
+            if (selectedSample != null)
+                return true;
+
+            return false;
+        }
+
         public ObservableCollection<Sample> Samples
         {
             get
@@ -54,6 +73,22 @@ namespace SimpleSamplerWPF.ViewModel
             set
             {
                 Set(ref samples, value);
+            }
+        }
+
+        public Sample SelectedSample
+        {
+            get
+            {
+                return selectedSample;
+            }
+
+            set
+            {
+                Set(ref selectedSample, value);
+                DeleteSampleCommand.RaiseCanExecuteChanged(); //Notify the UI for delete button state
+
+                //TODO: send message to the visualizer to display the waveform
             }
         }
     }

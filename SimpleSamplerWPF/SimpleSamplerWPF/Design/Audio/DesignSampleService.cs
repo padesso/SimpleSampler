@@ -1,4 +1,5 @@
 ﻿using SimpleSamplerWPF.Logic;
+using SimpleSamplerWPF.Model.Audio;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace SimpleSamplerWPF.Design.Audio
 {
-    public class DesignSampleService
+    public class DesignSampleService : ISampleService
     {
         public void GetSamples(Action<ObservableCollection<Sample>, Exception> callback)
         {
-            //TODO: improve this
+            //Mock data
             ObservableCollection<Sample> samples = new ObservableCollection<Sample>();
 
             samples.Add(new Sample(new CachedSound(@"TestAudio\CYCdh_AcouKick-07.wav"), "Test Kick"));
@@ -21,12 +22,12 @@ namespace SimpleSamplerWPF.Design.Audio
             callback(samples, null);
         }
 
-        public void AddSample(Sample sound, Action<bool, Exception> callback)
+        public void AddSample(Sample sound)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveSample(Sample sound, Action<bool, Exception> callback)
+        public void RemoveSample(Sample sound)
         {
             throw new NotImplementedException();
         }

@@ -12,6 +12,6 @@ namespace SimpleSamplerWPF.Model.Audio
     {
         void GetSamples(Action<ObservableCollection<Sample>, Exception> callback);
         void AddSample(Sample sound);
-        void RemoveSample(Sample sound, Action<bool, Exception> callback);
+        void RemoveSample(Sample sound);
     }
 }
