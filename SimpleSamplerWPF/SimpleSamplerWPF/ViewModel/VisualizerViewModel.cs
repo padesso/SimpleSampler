@@ -9,25 +9,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// Visualizer converted to WPF and MVVM based on:
+// http://www.giawa.com/tutorials/
+
+
 namespace SimpleSamplerWPF.ViewModel
 {
     public class VisualizerViewModel : ViewModelBase
     {
         private CachedSound sample;
-        private IVisualization visualization;
 
         public RelayCommand PlaySampleCommand { get; private set; }
 
         public VisualizerViewModel()
-        {
-            visualization = new PolylineWaveFormVisualization();
-
-            AudioPlaybackEngine.Instance.MaximumCalculated += audioGraph_MaximumCalculated;
-            AudioPlaybackEngine.Instance.FftCalculated += audioGraph_FftCalculated;
-
+        {           
             PlaySampleCommand = new RelayCommand(PlaySample, IsSampleLoaded);
-
-            //TODO: hook into the FFT events to create the waveform
 
             //TEST ONLY!
             sample = new CachedSound(@"TestAudio\CYCdh_K1close_Kick-01.wav");
@@ -63,30 +59,6 @@ namespace SimpleSamplerWPF.ViewModel
             set
             {
                 Set("Sample", ref sample, value);
-            }
-        }
-
-        public object Visualization
-        {
-            get
-            {
-                return this.visualization.Content;
-            }
-        }
-
-        void audioGraph_FftCalculated(object sender, FftEventArgs e)
-        {
-            if (this.visualization != null)
-            {
-                this.visualization.OnFftCalculated(e.Result);
-            }
-        }
-
-        void audioGraph_MaximumCalculated(object sender, MaxSampleEventArgs e)
-        {
-            if (this.visualization != null)
-            {
-                this.visualization.OnMaxCalculated(e.MinSample, e.MaxSample);
             }
         }
     }

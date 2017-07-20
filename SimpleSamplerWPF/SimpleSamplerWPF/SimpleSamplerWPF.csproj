@@ -87,9 +87,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\PolylineWaveFormControl.xaml.cs">
-      <DependentUpon>PolylineWaveFormControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\SampleLibraryControl.xaml.cs">
       <DependentUpon>SampleLibraryControl.xaml</DependentUpon>
     </Compile>
@@ -106,10 +103,6 @@
     <Compile Include="Error\MidiDeviceServiceException.cs" />
     <Compile Include="Helpers\AutoDisposeFileReader.cs" />
     <Compile Include="Helpers\Events\EventArgs.cs" />
-    <Compile Include="Helpers\IVisualization.cs" />
-    <Compile Include="Helpers\IWaveFormRenderer.cs" />
-    <Compile Include="Helpers\PolylineWaveFormVisualization.cs" />
-    <Compile Include="Helpers\SampleAggregator.cs" />
     <Compile Include="Logic\AudioPlaybackEngine.cs" />
     <Compile Include="Logic\CachedSound.cs" />
     <Compile Include="Logic\CachedSoundSampleProvider.cs" />
@@ -127,10 +120,6 @@
     <Compile Include="ViewModel\TrackControlViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\VisualizerViewModel.cs" />
-    <Page Include="Controls\PolylineWaveFormControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\SampleLibraryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

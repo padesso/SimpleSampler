@@ -15,10 +15,12 @@
             <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
 
-        <!-- Chart -->
-        <ContentPresenter Content="{Binding Visualization}" Grid.Row="0" />
+        <!-- TODO: Chart -->
+        
 
-        <!-- Play button -->
+
+
+            <!-- Play button -->
         <Button Grid.Row="1"
                 Width="25" Height="25"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
