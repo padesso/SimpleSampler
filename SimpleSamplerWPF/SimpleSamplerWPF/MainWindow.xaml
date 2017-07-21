@@ -83,18 +83,17 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="300"/>
-                        <ColumnDefinition Width="81*"/>
-                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <user:SampleLibraryControl
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"/>
 
-                    <!--<user:VisualizerControl
+                    <user:VisualizerControl
                         Grid.Column="1"
                         HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"/>-->
+                        VerticalAlignment="Stretch"/>
 
                 </Grid>
             </Border>

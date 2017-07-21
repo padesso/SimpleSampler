@@ -26,7 +26,6 @@ namespace SimpleSamplerWPF.ViewModel
         public RelayCommand ToggleLearnModeCommand { get; private set; }
 
         ISampleService sampleService;
-        private ObservableCollection<Sample> samples;
 
         public TrackControlViewModel(ISampleService sampleService)
         {

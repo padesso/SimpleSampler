@@ -1,8 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using SimpleSamplerWPF.Helpers;
 using SimpleSamplerWPF.Helpers.Events;
 using SimpleSamplerWPF.Logic;
+using SimpleSamplerWPF.Model.Audio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +19,7 @@ namespace SimpleSamplerWPF.ViewModel
 {
     public class VisualizerViewModel : ViewModelBase
     {
-        private CachedSound sample;
+        private Sample selectedSample;
 
         public RelayCommand PlaySampleCommand { get; private set; }
 
@@ -25,8 +27,7 @@ namespace SimpleSamplerWPF.ViewModel
         {           
             PlaySampleCommand = new RelayCommand(PlaySample, IsSampleLoaded);
 
-            //TEST ONLY!
-            sample = new CachedSound(@"TestAudio\CYCdh_K1close_Kick-01.wav");
+            Messenger.Default.Register<Sample>(this, m => SelectedSample = m);
         }
 
         /// <summary>
@@ -34,31 +35,30 @@ namespace SimpleSamplerWPF.ViewModel
         /// </summary>
         public void PlaySample()
         {
-            AudioPlaybackEngine.Instance.ReadWaveForm(sample);
+            //AudioPlaybackEngine.Instance.ReadWaveForm(Sample.CachedSound);
 
-            if (sample != null)
-                AudioPlaybackEngine.Instance.PlaySound(sample);
+            if (selectedSample != null)
+                AudioPlaybackEngine.Instance.PlaySound(SelectedSample.CachedSound);
         }
 
         private bool IsSampleLoaded()
         {
-            //TODO: do we need to look at other params?
-            if (sample == null)
+            if (selectedSample == null)
                 return false;
 
             return true;
         }
 
-        internal CachedSound Sample
+        internal Sample SelectedSample
         {
             get
             {
-                return sample;
+                return selectedSample;
             }
 
             set
             {
-                Set("Sample", ref sample, value);
+                Set("Sample", ref selectedSample, value);
             }
         }
     }

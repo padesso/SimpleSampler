@@ -1,14 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Win32;
 using SimpleSamplerWPF.Logic;
 using SimpleSamplerWPF.Model.Audio;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleSamplerWPF.ViewModel
 {
@@ -88,7 +84,8 @@ namespace SimpleSamplerWPF.ViewModel
                 Set(ref selectedSample, value);
                 DeleteSampleCommand.RaiseCanExecuteChanged(); //Notify the UI for delete button state
 
-                //TODO: send message to the visualizer to display the waveform
+                // send message to the visualizer to display the waveform
+                Messenger.Default.Send(selectedSample);
             }
         }
     }
