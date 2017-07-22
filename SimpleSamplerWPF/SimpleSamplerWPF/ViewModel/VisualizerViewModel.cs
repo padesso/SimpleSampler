@@ -66,13 +66,15 @@ namespace SimpleSamplerWPF.ViewModel
             {
                 Set("SelectedSample", ref selectedSample, value);
 
+                PlaySampleCommand.RaiseCanExecuteChanged(); //Notify the UI for play button state
+
                 float[] data = selectedSample.CachedSound.AudioData;
 
                 //TODO: move to center of visualizer, scale vertically and horizontally.
                 polylinePoints = new PointCollection();
-                for (int sampleIndex = 0; sampleIndex < data.Length; sampleIndex++)
+                for (int sampleIndex = 0; sampleIndex < data.Length; sampleIndex+=2)
                 {
-                    polylinePoints.Add(new Point(sampleIndex, data[sampleIndex]));
+                    polylinePoints.Add(new Point(sampleIndex, (data[sampleIndex] * 250) + 50));
                 }
 
                 RaisePropertyChanged("PolylinePoints");

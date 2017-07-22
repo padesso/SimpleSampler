@@ -16,8 +16,12 @@
         </Grid.RowDefinitions>
         
         <!-- Chart -->
-        <Canvas>
-            <Polyline Points="{Binding PolylinePoints}" Stroke="DarkGray" StrokeThickness="1" />
+        <Canvas
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <Polyline                 
+                Points="{Binding PolylinePoints}" 
+                Stroke="DarkGray" StrokeThickness="1" />
         </Canvas>
 
         <!-- Play button -->
