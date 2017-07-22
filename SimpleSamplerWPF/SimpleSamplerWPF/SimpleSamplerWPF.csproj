@@ -106,7 +106,6 @@
     <Compile Include="Logic\AudioPlaybackEngine.cs" />
     <Compile Include="Logic\CachedSound.cs" />
     <Compile Include="Logic\CachedSoundSampleProvider.cs" />
-    <Compile Include="Logic\MixingSampleProviderFFT.cs" />
     <Compile Include="Logic\Sample.cs" />
     <Compile Include="Logic\MidiEngine.cs" />
     <Compile Include="Model\Audio\ISampleService.cs" />

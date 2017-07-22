@@ -23,7 +23,6 @@ namespace SimpleSamplerWPF.ViewModel
 {
     public class VisualizerViewModel : ViewModelBase
     {
-        WaveStream waveStream;
         private Sample selectedSample;
 
         public RelayCommand PlaySampleCommand { get; private set; }

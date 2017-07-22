@@ -14,15 +14,12 @@ namespace SimpleSamplerWPF.Logic
     class AudioPlaybackEngine : IDisposable
     {
         private readonly IWavePlayer outputDevice;
-        private readonly MixingSampleProviderFFT mixer;
-
-        public event EventHandler<FftEventArgs> FftCalculated;
-        public event EventHandler<MaxSampleEventArgs> MaximumCalculated;
+        private readonly MixingSampleProvider mixer;
 
         public AudioPlaybackEngine(int sampleRate = 44100, int channelCount = 8)
         {
             outputDevice = new DirectSoundOut();
-            mixer = new MixingSampleProviderFFT(WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channelCount));
+            mixer = new MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channelCount));
             mixer.ReadFully = true;
             outputDevice.Init(mixer);
             outputDevice.Play();
@@ -61,24 +58,7 @@ namespace SimpleSamplerWPF.Logic
         {
             outputDevice.Dispose();
         }
-
-        public void ReadWaveForm(CachedSound sample)
-        {
-            try
-            {                
-                mixer.NotificationCount = sample.WaveFormat.SampleRate / 100;
-                mixer.PerformFFT = true;
-                mixer.FftCalculated += (s, a) => FftCalculated?.Invoke(this, a);
-                mixer.MaximumCalculated += (s, a) => MaximumCalculated?.Invoke(this, a);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Problem reading sample");
-                //CloseFile();
-            }
-        }
-        
-        //TODO: This is probably causing the issue with event handlers disappearing
+  
         public static readonly AudioPlaybackEngine Instance = new AudioPlaybackEngine(44100, 2);
     }
 }
