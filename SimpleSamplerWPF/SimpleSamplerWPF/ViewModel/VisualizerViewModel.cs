@@ -34,15 +34,7 @@ namespace SimpleSamplerWPF.ViewModel
         {           
             PlaySampleCommand = new RelayCommand(PlaySample, IsSampleLoaded);
 
-            Messenger.Default.Register<Sample>(this, m => SelectedSample = m);
-
-            //TEST DATA
-            polylinePoints = new PointCollection();
-            polylinePoints.Add(new Point(10, 100));
-            polylinePoints.Add(new Point(100, 200));
-            polylinePoints.Add(new Point(200, 30));
-            polylinePoints.Add(new Point(250, 200));
-            polylinePoints.Add(new Point(200, 150));
+            Messenger.Default.Register<Sample>(this, m => SelectedSample = m);            
         }
 
         /// <summary>
@@ -74,6 +66,17 @@ namespace SimpleSamplerWPF.ViewModel
             set
             {
                 Set("SelectedSample", ref selectedSample, value);
+
+                float[] data = selectedSample.CachedSound.AudioData;
+
+                //TODO: move to center of visualizer, scale vertically and horizontally.
+                polylinePoints = new PointCollection();
+                for (int sampleIndex = 0; sampleIndex < data.Length; sampleIndex++)
+                {
+                    polylinePoints.Add(new Point(sampleIndex, data[sampleIndex]));
+                }
+
+                RaisePropertyChanged("PolylinePoints");
             }
         }
 
