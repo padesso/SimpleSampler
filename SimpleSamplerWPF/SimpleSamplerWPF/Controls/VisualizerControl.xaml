@@ -14,13 +14,13 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
-
-        <!-- TODO: Chart -->
         
+        <!-- Chart -->
+        <Canvas>
+            <Polyline Points="{Binding PolylinePoints}" Stroke="DarkGray" StrokeThickness="1" />
+        </Canvas>
 
-
-
-            <!-- Play button -->
+        <!-- Play button -->
         <Button Grid.Row="1"
                 Width="25" Height="25"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
