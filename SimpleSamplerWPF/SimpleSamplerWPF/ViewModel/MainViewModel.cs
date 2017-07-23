@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Win32;
 using NAudio.Midi;
 using NAudio.Wave;
@@ -8,6 +9,7 @@ using SimpleSamplerWPF.Controls;
 using SimpleSamplerWPF.Logic;
 using SimpleSamplerWPF.Model;
 using SimpleSamplerWPF.Model.MIDI;
+using System;
 using System.Collections.ObjectModel;
 
 namespace SimpleSamplerWPF.ViewModel
@@ -27,7 +29,8 @@ namespace SimpleSamplerWPF.ViewModel
         private int selectedMidiDeviceIndex = -1;
 
         public RelayCommand AddTrackCommand { get; private set; }
-        public RelayCommand DeleteTrackCommand { get; private set; }
+
+        public Action<TrackControl> DeleteTrackAction { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -38,8 +41,7 @@ namespace SimpleSamplerWPF.ViewModel
 
             trackControls = new ObservableCollection<TrackControl>();
             AddTrackCommand = new RelayCommand(AddTrack);
-            DeleteTrackCommand = new RelayCommand(DeleteTrack);
-
+            
             this.midiDeviceService = midiDeviceService;
             this.midiDeviceService.GetDeviceNames(
                 (names, error) =>
@@ -47,13 +49,7 @@ namespace SimpleSamplerWPF.ViewModel
                     MidiDevices = names;
                 });
 
-            //TODO: pass selected index of device dropdown
-            //this.midiDeviceService.GetDevice(0,
-            //    (device, error) =>
-            //    {
-            //        //TODO: set a value and bind to UI
-            //        var selectedDevice = device;
-            //    });
+            Messenger.Default.Register<TrackControl>(this, DeleteTrack);
         }
 
         public void AddTrack()
@@ -62,10 +58,9 @@ namespace SimpleSamplerWPF.ViewModel
             trackControls.Add(tc);
         }
 
-        public void DeleteTrack()
+        public void DeleteTrack(TrackControl track)
         {
-            //TODO: Find a good way to remove the track
-            //trackControls.Remove();
+            trackControls.Remove(track);
         }
 
         public void TestSound()

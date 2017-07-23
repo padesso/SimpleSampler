@@ -12,6 +12,7 @@ using NAudio.Midi;
 using SimpleSamplerWPF.Logic;
 using SimpleSamplerWPF.Model.Audio;
 using System.Collections.ObjectModel;
+using SimpleSamplerWPF.Controls;
 
 namespace SimpleSamplerWPF.ViewModel
 {
@@ -24,13 +25,9 @@ namespace SimpleSamplerWPF.ViewModel
         private NoteOnEvent noteOnMessage;
 
         public RelayCommand ToggleLearnModeCommand { get; private set; }
+        public RelayCommand<TrackControl> DeleteTrackCommand { get; private set; }
 
         ISampleService sampleService;
-
-        public TrackControlViewModel()
-        {
-
-        }
 
         public TrackControlViewModel(ISampleService sampleService, bool isMaster)
         {
@@ -39,6 +36,7 @@ namespace SimpleSamplerWPF.ViewModel
             IsMaster = isMaster;
 
             ToggleLearnModeCommand = new RelayCommand(ToggleLearnMode);
+            DeleteTrackCommand = new RelayCommand<TrackControl>(DeleteTrack);
 
             track = new TrackItem();
 
@@ -51,6 +49,11 @@ namespace SimpleSamplerWPF.ViewModel
         private void ToggleLearnMode()
         {
             LearnMode = !LearnMode;
+        }
+
+        private void DeleteTrack(TrackControl track)
+        {
+            Messenger.Default.Send<TrackControl>(track);
         }
 
         public float Volume

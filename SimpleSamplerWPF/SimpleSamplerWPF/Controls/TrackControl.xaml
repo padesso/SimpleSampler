@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:SimpleSamplerWPF.Controls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:converters="clr-namespace:SimpleSamplerWPF.Converters"
+             Name="trackControl"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="75"
              Width="75"
@@ -49,6 +50,8 @@
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"
                 ToolTip="Delete track."
+                Command="{Binding DeleteTrackCommand}"
+                CommandParameter="{Binding ElementName=trackControl}"
                 Visibility="{Binding IsMaster, Converter={StaticResource BoolToVisibilityConverter}}">
             <materialDesign:PackIcon Kind="Minus" Height="15" Width="15" />
         </Button>
