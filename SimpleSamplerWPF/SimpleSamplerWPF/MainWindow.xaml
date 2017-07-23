@@ -132,7 +132,7 @@
             Grid.Row="2" Grid.Column="4"
             VerticalAlignment="Stretch">
 
-            <user:TrackControl/>
+            <user:MasterTrackControl/>
 
         </materialDesign:Card>
 

@@ -87,6 +87,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\MasterTrackControl.xaml.cs">
+      <DependentUpon>MasterTrackControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SampleLibraryControl.xaml.cs">
       <DependentUpon>SampleLibraryControl.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
     <Compile Include="ViewModel\TrackControlViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\VisualizerViewModel.cs" />
+    <Page Include="Controls\MasterTrackControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\SampleLibraryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

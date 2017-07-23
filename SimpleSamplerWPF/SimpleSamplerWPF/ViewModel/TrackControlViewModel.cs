@@ -27,15 +27,23 @@ namespace SimpleSamplerWPF.ViewModel
 
         ISampleService sampleService;
 
-        public TrackControlViewModel(ISampleService sampleService)
+        public TrackControlViewModel()
+        {
+
+        }
+
+        public TrackControlViewModel(ISampleService sampleService, bool isMaster)
         {
             this.sampleService = sampleService;
 
-            IsMaster = false;
+            IsMaster = isMaster;
 
             ToggleLearnModeCommand = new RelayCommand(ToggleLearnMode);
 
             track = new TrackItem();
+
+            if (isMaster)
+                Name = "Master";
 
             Messenger.Default.Register<NoteOnEvent>( this, m => NoteOnMessage = m);
         }

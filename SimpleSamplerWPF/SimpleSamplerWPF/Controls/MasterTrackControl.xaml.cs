@@ -19,15 +19,15 @@ using System.Windows.Shapes;
 namespace SimpleSamplerWPF.Controls
 {
     /// <summary>
-    /// Interaction logic for TrackControl.xaml
+    /// Interaction logic for MasterTrackControl.xaml
     /// </summary>
-    public partial class TrackControl : UserControl
+    public partial class MasterTrackControl : UserControl
     {
-        public TrackControl()
+        public MasterTrackControl()
         {
             InitializeComponent();
 
-            DataContext = new TrackControlViewModel(ServiceLocator.Current.GetInstance<ISampleService>(), false);
-        }   
+            DataContext = new TrackControlViewModel(ServiceLocator.Current.GetInstance<ISampleService>(), true);
+        }
     }
 }

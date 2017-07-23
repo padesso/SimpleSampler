@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="SimpleSamplerWPF.Controls.MasterTrackControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleSamplerWPF.Controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:SimpleSamplerWPF.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="75"
+             Width="75"
+             Margin="5,5,5,5"
+             Background="WhiteSmoke"
+             BorderThickness="1">
+    <UserControl.Resources>
+        <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <Border BorderThickness="2">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding LearnMode}" Value="True">
+                        <Setter Property="BorderBrush" Value="DarkRed"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding LearnMode}" Value="False">
+                        <Setter Property="BorderBrush" Value="WhiteSmoke"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Name="ControlRow" Height="25"/>
+                <RowDefinition Name="MainRow" Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="0"
+                Height="20" Width="20"
+                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                ToolTip="Delete track."
+                Visibility="{Binding IsMaster, Converter={StaticResource BoolToVisibilityConverter}}">
+                <materialDesign:PackIcon Kind="Minus" Height="15" Width="15" />
+            </Button>
+
+            <!-- TODO: Make this a drop down to select playback type -->
+            <Button Grid.Row="0" Grid.Column="2"
+                Height="20" Width="20"
+                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                ToolTip="Select sample playback type."
+                Command="{Binding ToggleLearnModeCommand}"
+                Visibility="{Binding IsMaster, Converter={StaticResource BoolToVisibilityConverter}}">
+                <materialDesign:PackIcon Kind="ArrowDownDropCircle" Height="15" Width="15"/>
+            </Button>
+
+            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+
+                <Slider x:Name="volumeSlider" 
+                    Value="{Binding Volume, Mode=TwoWay}"
+                    Minimum="0.0" Maximum="1.0" 
+                    Orientation="Vertical" 
+                    Height="100"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Margin="0,0,0,5" />
+
+                <!--TODO: figure out how to remove purple background -->
+                <Slider Name="panSlider"
+                    Value="{Binding Pan, Mode=TwoWay}"
+                    Minimum="0" Maximum="1.0"
+                    Margin="10,0,10,5" />
+
+                <TextBox Name="trackNameText"
+                     Text="{Binding Name, Mode=TwoWay}"
+                     TextAlignment="Center"
+                     FontSize="10"
+                     Height="25"
+                     IsEnabled="{Binding IsMaster, Converter={StaticResource InverseBooleanConverter}}">
+                </TextBox>
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>
