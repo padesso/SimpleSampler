@@ -12,9 +12,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using SimpleSamplerWPF.Design.Audio;
-using SimpleSamplerWPF.Design.MIDI;
-using SimpleSamplerWPF.Model;
 using SimpleSamplerWPF.Model.Audio;
 using SimpleSamplerWPF.Model.MIDI;
 
@@ -33,16 +30,18 @@ namespace SimpleSamplerWPF.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            if (ViewModelBase.IsInDesignModeStatic)
-            {
-                SimpleIoc.Default.Register<IMidiDeviceService, DesignMidiDeviceService>();
-                SimpleIoc.Default.Register<ISampleService, DesignSampleService>();
-            }
-            else
-            {
-                SimpleIoc.Default.Register<IMidiDeviceService, MidiDeviceService>();
-                SimpleIoc.Default.Register<ISampleService, SampleService>();
-            }
+            SimpleIoc.Default.Register<IMidiDeviceService, MidiDeviceService>();
+            SimpleIoc.Default.Register<ISampleService, SampleService>();
+
+            //if (ViewModelBase.IsInDesignModeStatic)
+            //{
+            //    //Whatever.  I don't feel like this works anyways.
+            //}
+            //else
+            //{
+            //    SimpleIoc.Default.Register<IMidiDeviceService, MidiDeviceService>();
+            //    SimpleIoc.Default.Register<ISampleService, SampleService>();
+            //}
 
             SimpleIoc.Default.Register<MainViewModel>();
         }

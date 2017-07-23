@@ -16,7 +16,7 @@ using SimpleSamplerWPF.Controls;
 
 namespace SimpleSamplerWPF.ViewModel
 {
-    public class TrackControlViewModel : ViewModelBase
+    public sealed class TrackControlViewModel : ViewModelBase
     {
         private bool isMaster;
         private TrackItem track;
