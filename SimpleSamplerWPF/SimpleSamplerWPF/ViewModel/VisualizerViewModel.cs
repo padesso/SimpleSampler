@@ -40,8 +40,7 @@ namespace SimpleSamplerWPF.ViewModel
             PlaySampleCommand = new RelayCommand(PlaySample, IsSampleLoaded);
             CanvasLoadedCommand = new RelayCommand<RoutedEventArgs>(CanvasLoaded);
             CanvasSizeChangedCommand = new RelayCommand<SizeChangedEventArgs>(CanvasSizeChanged);
-
-
+            
             Messenger.Default.Register<Sample>(this, m => SelectedSample = m);            
         }
 
@@ -64,7 +63,7 @@ namespace SimpleSamplerWPF.ViewModel
             canvasHeight = ((Canvas)args.Source).ActualHeight;
             canvasWidth = ((Canvas)args.Source).ActualWidth;
 
-            //TODO: redraw wave form
+            drawWaveform();
         }
 
         /// <summary>
@@ -97,16 +96,7 @@ namespace SimpleSamplerWPF.ViewModel
 
                 PlaySampleCommand.RaiseCanExecuteChanged(); //Notify the UI for play button state
 
-                float[] data = selectedSample.CachedSound.AudioData;
-
-                //TODO: move to center of visualizer, scale vertically and horizontally.
-                polylinePoints = new PointCollection();
-                for (int sampleIndex = 0; sampleIndex < data.Length; sampleIndex+=2)
-                {
-                    polylinePoints.Add(new Point(sampleIndex, (data[sampleIndex] * 250) + (canvasHeight / 2)));
-                }
-
-                RaisePropertyChanged("PolylinePoints");
+                drawWaveform(); 
             }
         }
 
@@ -121,6 +111,29 @@ namespace SimpleSamplerWPF.ViewModel
             {
                 Set("PolylinePoints", ref polylinePoints, value);
             }
+        }
+
+        /// <summary>
+        /// Draw the waveform scaled to the canvas size.  If the sample is null, clear the waveform.
+        /// </summary>
+        private void drawWaveform()
+        {
+            polylinePoints = new PointCollection();
+
+            if (selectedSample != null)
+            {
+                float[] data = selectedSample.CachedSound.AudioData;
+
+                double sampleStepRatio = canvasWidth / data.Length;
+
+                // move to center of visualizer, scale vertically and horizontally.                
+                for (int sampleIndex = 0; sampleIndex < data.Length; sampleIndex++)
+                {
+                    polylinePoints.Add(new Point(sampleIndex * sampleStepRatio, (data[sampleIndex] * (canvasHeight / 2)) + (canvasHeight / 2)));
+                }
+            }
+
+            RaisePropertyChanged("PolylinePoints");
         }
     }
 }
