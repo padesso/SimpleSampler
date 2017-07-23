@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:SimpleSamplerWPF.Controls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:user="clr-namespace:SimpleSamplerWPF.Controls"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
              mc:Ignorable="d" 
              Background="WhiteSmoke"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -19,6 +21,18 @@
         <Canvas
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SizeChanged" >
+                    <cmd:EventToCommand Command="{Binding CanvasSizeChangedCommand}"
+                        PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="Loaded" >
+                    <cmd:EventToCommand Command="{Binding CanvasLoadedCommand}"
+                        PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
             <Polyline                 
                 Points="{Binding PolylinePoints}" 
                 Stroke="DarkGray" StrokeThickness="1" />

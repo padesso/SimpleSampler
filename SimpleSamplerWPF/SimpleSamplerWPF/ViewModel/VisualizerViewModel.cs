@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -26,14 +27,44 @@ namespace SimpleSamplerWPF.ViewModel
         private Sample selectedSample;
 
         public RelayCommand PlaySampleCommand { get; private set; }
+        public RelayCommand<RoutedEventArgs> CanvasLoadedCommand { get; private set; }
+        public RelayCommand<SizeChangedEventArgs> CanvasSizeChangedCommand { get; private set; }
 
         PointCollection polylinePoints;
+
+        private double canvasHeight;
+        private double canvasWidth;
 
         public VisualizerViewModel()
         {           
             PlaySampleCommand = new RelayCommand(PlaySample, IsSampleLoaded);
+            CanvasLoadedCommand = new RelayCommand<RoutedEventArgs>(CanvasLoaded);
+            CanvasSizeChangedCommand = new RelayCommand<SizeChangedEventArgs>(CanvasSizeChanged);
+
 
             Messenger.Default.Register<Sample>(this, m => SelectedSample = m);            
+        }
+
+        /// <summary>
+        /// Gets the initial height of the visualizer canvas.
+        /// </summary>
+        /// <param name="args">Parameters of the visualizer canvas.</param>
+        private void CanvasLoaded(RoutedEventArgs args)
+        {
+            canvasHeight = ((Canvas)args.Source).ActualHeight;
+            canvasWidth = ((Canvas)args.Source).ActualWidth;
+        }
+
+        /// <summary>
+        /// Called when the canvas is resized.
+        /// </summary>
+        /// <param name="args">Parameters of the resizing of the visualizer canvas.</param>
+        private void CanvasSizeChanged(SizeChangedEventArgs args)
+        {
+            canvasHeight = ((Canvas)args.Source).ActualHeight;
+            canvasWidth = ((Canvas)args.Source).ActualWidth;
+
+            //TODO: redraw wave form
         }
 
         /// <summary>
@@ -41,8 +72,6 @@ namespace SimpleSamplerWPF.ViewModel
         /// </summary>
         public void PlaySample()
         {
-            //AudioPlaybackEngine.Instance.ReadWaveForm(Sample.CachedSound);
-
             if (selectedSample != null)
                 AudioPlaybackEngine.Instance.PlaySound(SelectedSample.CachedSound);
         }
@@ -74,7 +103,7 @@ namespace SimpleSamplerWPF.ViewModel
                 polylinePoints = new PointCollection();
                 for (int sampleIndex = 0; sampleIndex < data.Length; sampleIndex+=2)
                 {
-                    polylinePoints.Add(new Point(sampleIndex, (data[sampleIndex] * 250) + 50));
+                    polylinePoints.Add(new Point(sampleIndex, (data[sampleIndex] * 250) + (canvasHeight / 2)));
                 }
 
                 RaisePropertyChanged("PolylinePoints");
