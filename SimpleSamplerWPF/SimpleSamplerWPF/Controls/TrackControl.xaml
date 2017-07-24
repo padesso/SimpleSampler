@@ -8,7 +8,7 @@
              xmlns:converters="clr-namespace:SimpleSamplerWPF.Converters"
              Name="trackControl"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="75"
+             d:DesignHeight="215" d:DesignWidth="75"
              Width="75"
              Margin="5,5,5,5"
              Background="WhiteSmoke"
@@ -91,7 +91,33 @@
                      IsEnabled="{Binding IsMaster, Converter={StaticResource InverseBooleanConverter}}">
             </TextBox>
 
-        </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Height="20" Width="20"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                        Margin="5,5,0,5" 
+                        ToolTip="Delete track."
+                        Command="{Binding ToggleLearnModeCommand}"
+                        CommandParameter="{Binding ElementName=trackControl}"
+                        Visibility="{Binding IsMaster, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <materialDesign:PackIcon Kind="ArrowRight" Height="15" Width="15" />
+                    </Button>
+
+                    <Label 
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="{Binding NoteNumber}"/>
+                </Grid>
+            </StackPanel>            
     </Grid>
     </Border>
 </UserControl>

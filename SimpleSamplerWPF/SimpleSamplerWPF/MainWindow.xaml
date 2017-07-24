@@ -25,7 +25,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Name="MenuRow" Height="auto"/>
             <RowDefinition Name="ExplorerRow" Height="*"/>
-            <RowDefinition Name="TrackRow" Height="250"/>
+            <RowDefinition Name="TrackRow" Height="275"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>

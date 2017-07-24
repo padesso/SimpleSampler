@@ -143,6 +143,8 @@ namespace SimpleSamplerWPF.ViewModel
                 {
                     track.NoteNumber = noteOnMessage.NoteNumber;
                     LearnMode = false;
+
+                    RaisePropertyChanged("NoteNumber");
                 }                
                 else if (noteOnMessage.NoteNumber == track.NoteNumber)  // Check if note is good for this track and play sample if so
                 {
@@ -151,6 +153,14 @@ namespace SimpleSamplerWPF.ViewModel
                         AudioPlaybackEngine.Instance.PlaySound(track.Sample.CachedSound);
                     }
                 }
+            }
+        }
+
+        public string NoteNumber
+        {
+            get
+            {
+                return track.NoteNumber.ToString();
             }
         }
     }
