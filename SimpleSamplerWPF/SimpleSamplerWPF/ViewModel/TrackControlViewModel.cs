@@ -20,14 +20,22 @@ namespace SimpleSamplerWPF.ViewModel
     {
         private bool isMaster;
         private TrackItem track;
-        private bool learnMode;
+        private LearnModes learnMode;
         private Color borderColor = Colors.Red;
         private NoteOnEvent noteOnMessage;
 
-        public RelayCommand ToggleLearnModeCommand { get; private set; }
+        public RelayCommand ToggleMidiLearnModeCommand { get; private set; }
+        public RelayCommand ToggleSampleLearnModeCommand { get; private set; }
         public RelayCommand<TrackControl> DeleteTrackCommand { get; private set; }
 
         ISampleService sampleService;
+        
+        public enum LearnModes
+        {
+            None,
+            MidiLearnMode,
+            SampleLearnMode
+        };
 
         public TrackControlViewModel(ISampleService sampleService, bool isMaster)
         {
@@ -35,7 +43,8 @@ namespace SimpleSamplerWPF.ViewModel
 
             IsMaster = isMaster;
 
-            ToggleLearnModeCommand = new RelayCommand(ToggleLearnMode);
+            ToggleMidiLearnModeCommand = new RelayCommand(ToggleMidiLearnMode);
+            ToggleSampleLearnModeCommand = new RelayCommand(ToggleSampleLearnMode);
             DeleteTrackCommand = new RelayCommand<TrackControl>(DeleteTrack);
 
             track = new TrackItem();
@@ -43,12 +52,32 @@ namespace SimpleSamplerWPF.ViewModel
             if (isMaster)
                 Name = "Master";
 
+            //TODO: register for sample selected event and assign it!
             Messenger.Default.Register<NoteOnEvent>( this, m => NoteOnMessage = m);
         }
 
-        private void ToggleLearnMode()
+        private void ToggleMidiLearnMode()
         {
-            LearnMode = !LearnMode;
+            if (LearnMode == LearnModes.MidiLearnMode)
+            {
+                LearnMode = LearnModes.None;
+            }
+            else
+            {
+                LearnMode = LearnModes.MidiLearnMode;
+            }
+        }
+
+        private void ToggleSampleLearnMode()
+        {
+            if (LearnMode == LearnModes.SampleLearnMode)
+            {
+                LearnMode = LearnModes.None;
+            }
+            else
+            {
+                LearnMode = LearnModes.SampleLearnMode;
+            }
         }
 
         private void DeleteTrack(TrackControl track)
@@ -101,7 +130,7 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
-        public bool LearnMode
+        public LearnModes LearnMode
         {
             get
             {
@@ -139,10 +168,10 @@ namespace SimpleSamplerWPF.ViewModel
                 //TODO: figure out why this is firing twice per hit     
                 Set(ref noteOnMessage, value);
 
-                if(learnMode)
+                if(LearnMode == LearnModes.MidiLearnMode)
                 {
                     track.NoteNumber = noteOnMessage.NoteNumber;
-                    LearnMode = false;
+                    LearnMode = LearnModes.None;
 
                     RaisePropertyChanged("NoteNumber");
                 }                

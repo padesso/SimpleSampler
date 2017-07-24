@@ -17,21 +17,22 @@
     <UserControl.Resources>
         <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:LearnModeToColorConverter x:Key="LearnModeToColorConverter"/>
     </UserControl.Resources>
-    
-    <Border BorderThickness="2">
-        <Border.Style>
+
+    <Border BorderThickness="2" BorderBrush="{Binding LearnMode, Converter={StaticResource LearnModeToColorConverter}}">
+        <!--<Border.Style>
             <Style TargetType="Border">
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding LearnMode}" Value="True">
-                        <Setter Property="BorderBrush" Value="DarkRed"/>
+                        <Setter Property="BorderBrush" Value="{Binding LearnMode, Converter={StaticResource LearnModeToColorConverter}}"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding LearnMode}" Value="False">
-                        <Setter Property="BorderBrush" Value="WhiteSmoke"/>
+                        <Setter Property="BorderBrush" Value="{Binding LearnMode, Converter={StaticResource LearnModeToColorConverter}}"/>
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
-        </Border.Style>
+        </Border.Style>-->
 
         <Grid>
         <Grid.RowDefinitions>
@@ -62,9 +63,9 @@
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"
                 ToolTip="Select sample playback type."
-                Command="{Binding ToggleLearnModeCommand}"
+                Command="{Binding ToggleSampleLearnModeCommand}"
                 Visibility="{Binding IsMaster, Converter={StaticResource BoolToVisibilityConverter}}">
-            <materialDesign:PackIcon Kind="ArrowDownDropCircle" Height="15" Width="15"/>
+            <materialDesign:PackIcon Kind="MusicNote" Height="15" Width="15"/>
         </Button>
 
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
@@ -105,7 +106,7 @@
                         Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                         Margin="5,5,0,5" 
                         ToolTip="Delete track."
-                        Command="{Binding ToggleLearnModeCommand}"
+                        Command="{Binding ToggleMidiLearnModeCommand}"
                         CommandParameter="{Binding ElementName=trackControl}"
                         Visibility="{Binding IsMaster, Converter={StaticResource BoolToVisibilityConverter}}">
                             <materialDesign:PackIcon Kind="ArrowRight" Height="15" Width="15" />

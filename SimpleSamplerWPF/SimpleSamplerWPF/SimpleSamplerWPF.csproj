@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\InverseBooleanConverter.cs" />
+    <Compile Include="Converters\LearnModeToColorConverter.cs" />
     <Compile Include="Error\MidiDeviceServiceException.cs" />
     <Compile Include="Helpers\AutoDisposeFileReader.cs" />
     <Compile Include="Helpers\Events\EventArgs.cs" />
