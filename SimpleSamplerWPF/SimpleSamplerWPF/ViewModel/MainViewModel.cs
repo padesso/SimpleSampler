@@ -115,6 +115,11 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        public string Version
+        {
+            get { return "v " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
+        }
+
         public override void Cleanup()
         {
             // Get rid of the playback engine instance

@@ -26,6 +26,7 @@
             <RowDefinition Name="MenuRow" Height="auto"/>
             <RowDefinition Name="ExplorerRow" Height="*"/>
             <RowDefinition Name="TrackRow" Height="275"/>
+            <RowDefinition Name="FooterRow" Height="25"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -144,5 +145,13 @@
 
             <materialDesign:PackIcon Kind="Plus" Height="20" Width="20" />
         </Button>
+
+        <Label 
+            Grid.Row="3" Grid.ColumnSpan="5"
+            Content="{Binding Version}" 
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Foreground="#e3e3e3"
+            Margin="0 0 10 0"/>
     </Grid>
 </Window>
