@@ -12,6 +12,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using SimpleSamplerWPF.Logic;
 using SimpleSamplerWPF.Model.Audio;
 using SimpleSamplerWPF.Model.MIDI;
 
@@ -65,6 +66,7 @@ namespace SimpleSamplerWPF.ViewModel
         /// </summary>
         public static void Cleanup()
         {
+            ServiceLocator.Current.GetInstance<MainViewModel>().Cleanup();
         }
     }
 }

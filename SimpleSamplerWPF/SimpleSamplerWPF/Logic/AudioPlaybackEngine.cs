@@ -15,14 +15,17 @@ namespace SimpleSamplerWPF.Logic
     {
         private readonly IWavePlayer outputDevice;
         private readonly MixingSampleProvider mixer;
+        private VolumeSampleProvider volumeProvider;
 
         public AudioPlaybackEngine(int sampleRate = 44100, int channelCount = 8)
         {
             outputDevice = new DirectSoundOut();
             mixer = new MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channelCount));
             mixer.ReadFully = true;
+            volumeProvider = new VolumeSampleProvider(mixer);
+            volumeProvider.Volume = 1.0f;
             outputDevice.Init(mixer);
-            outputDevice.Play();
+            outputDevice.Play();            
         }
 
         public void PlaySound(string fileName)

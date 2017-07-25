@@ -124,11 +124,12 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
-        ////public override void Cleanup()
-        ////{
-        ////    // Clean up if needed
+        public override void Cleanup()
+        {
+            // Get rid of the playback engine instance
+            AudioPlaybackEngine.Instance.Dispose();
 
-        ////    base.Cleanup();
-        ////}
+            base.Cleanup();
+        }
     }
 }
