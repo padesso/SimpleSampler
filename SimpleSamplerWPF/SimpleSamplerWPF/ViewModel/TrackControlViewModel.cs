@@ -53,7 +53,8 @@ namespace SimpleSamplerWPF.ViewModel
                 Name = "Master";
 
             //TODO: register for sample selected event and assign it!
-            Messenger.Default.Register<NoteOnEvent>( this, m => NoteOnMessage = m);
+            Messenger.Default.Register<NoteOnEvent>( this, note => NoteOnMessage = note);
+            Messenger.Default.Register<Sample>(this, sample => SampleMessage = sample);
         }
 
         private void ToggleMidiLearnMode()
@@ -181,6 +182,27 @@ namespace SimpleSamplerWPF.ViewModel
                     {
                         AudioPlaybackEngine.Instance.PlaySound(track.Sample.CachedSound);
                     }
+                }
+            }
+        }
+
+        public Sample SampleMessage
+        {
+            get
+            {
+                return track.Sample;
+            }
+
+            set
+            {
+                //TODO: why is this firing twice???
+                if (LearnMode == LearnModes.SampleLearnMode)
+                {
+                    Sample previousSample = track.Sample;
+                    track.Sample = value;
+                    RaisePropertyChanged("SampleMessage", previousSample, value, true);
+
+                    LearnMode = LearnModes.None;
                 }
             }
         }
