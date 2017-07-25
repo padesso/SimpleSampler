@@ -57,7 +57,17 @@ namespace SimpleSamplerWPF.ViewModel
             {
                 Messenger.Default.Register<NoteOnEvent>(this, note => NoteOnMessage = note);
                 Messenger.Default.Register<Sample>(this, sample => SampleMessage = sample);
+                Messenger.Default.Register<NotificationMessage>(this, NotificationMessageReceived);
             }
+        }
+
+        private void NotificationMessageReceived(NotificationMessage notification)
+        {
+            // If this is not the track control that sent the message, then set learn mode to None
+            if (notification.Sender == this)
+                return;
+
+            LearnMode = LearnModes.None;
         }
 
         private void ToggleMidiLearnMode()
@@ -70,7 +80,9 @@ namespace SimpleSamplerWPF.ViewModel
             {
                 LearnMode = LearnModes.MidiLearnMode;
                 //Broadcast learn mode to deslect sample in library control so selection is captured
-                Messenger.Default.Send<LearnModes>(LearnMode); 
+                Messenger.Default.Send<LearnModes>(LearnMode);
+
+                Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, LearnMode.ToString()));
             }
         }
 
@@ -85,6 +97,8 @@ namespace SimpleSamplerWPF.ViewModel
                 LearnMode = LearnModes.SampleLearnMode;
                 //Broadcast learn mode to deslect sample in library control so selection is captured
                 Messenger.Default.Send<LearnModes>(LearnMode);
+
+                Messenger.Default.Send<NotificationMessage>(new NotificationMessage(this, LearnMode.ToString()));
             }
         }
 
