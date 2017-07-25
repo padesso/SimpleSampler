@@ -42,7 +42,7 @@
                 BorderThickness="3"
                 ItemsSource="{Binding Samples}"
                 SelectedItem="{Binding SelectedSample, Mode=OneWayToSource}"
-                DisplayMemberPath="Name">
+                DisplayMemberPath="Name">            
         </ListView>
 
     </Grid>

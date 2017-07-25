@@ -72,6 +72,8 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        //TODO: this doesn't fire when clicking on an already selected sample but we need 
+        //it to so the learning stuff works as expected.
         public Sample SelectedSample
         {
             get
