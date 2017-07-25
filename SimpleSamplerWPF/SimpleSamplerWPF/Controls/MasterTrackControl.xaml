@@ -52,7 +52,6 @@
                 <materialDesign:PackIcon Kind="Minus" Height="15" Width="15" />
             </Button>
 
-            <!-- TODO: Make this a drop down to select playback type -->
             <Button Grid.Row="0" Grid.Column="2"
                 Height="20" Width="20"
                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
@@ -73,7 +72,6 @@
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Margin="0,0,0,5" />
 
-                <!--TODO: figure out how to remove purple background -->
                 <Slider Name="panSlider"
                     Value="{Binding Pan, Mode=TwoWay}"
                     Minimum="0" Maximum="1.0"

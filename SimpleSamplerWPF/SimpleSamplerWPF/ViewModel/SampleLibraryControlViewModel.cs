@@ -5,6 +5,7 @@ using Microsoft.Win32;
 using SimpleSamplerWPF.Logic;
 using SimpleSamplerWPF.Model.Audio;
 using System.Collections.ObjectModel;
+using static SimpleSamplerWPF.ViewModel.TrackControlViewModel;
 
 namespace SimpleSamplerWPF.ViewModel
 {
@@ -22,6 +23,8 @@ namespace SimpleSamplerWPF.ViewModel
         {
             AddSampleCommand = new RelayCommand(AddSample);
             DeleteSampleCommand = new RelayCommand(DeleteSample, CanDelete);
+
+            Messenger.Default.Register<LearnModes>(this, LearnMode);
 
             this.sampleService = sampleService;
             this.sampleService.GetSamples(
@@ -89,6 +92,11 @@ namespace SimpleSamplerWPF.ViewModel
                 // send message to the visualizer to display the waveform
                 Messenger.Default.Send(selectedSample);
             }
+        }
+
+        private void LearnMode(LearnModes mode)
+        {
+            SelectedSample = null; 
         }
     }
 }

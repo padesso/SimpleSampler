@@ -69,6 +69,8 @@ namespace SimpleSamplerWPF.ViewModel
             else
             {
                 LearnMode = LearnModes.MidiLearnMode;
+                //Broadcast learn mode to deslect sample in library control so selection is captured
+                Messenger.Default.Send<LearnModes>(LearnMode); 
             }
         }
 
@@ -81,6 +83,8 @@ namespace SimpleSamplerWPF.ViewModel
             else
             {
                 LearnMode = LearnModes.SampleLearnMode;
+                //Broadcast learn mode to deslect sample in library control so selection is captured
+                Messenger.Default.Send<LearnModes>(LearnMode);
             }
         }
 
@@ -212,13 +216,16 @@ namespace SimpleSamplerWPF.ViewModel
             {
                 if (LearnMode == LearnModes.SampleLearnMode)
                 {
-                    Sample previousSample = track.Sample;
-                    track.Sample = value;
-                    Name = track.Sample.Name;
+                    if (value != null)
+                    {
+                        Sample previousSample = track.Sample;
+                        track.Sample = value;
+                        Name = track.Sample.Name;
 
-                    RaisePropertyChanged("SampleMessage", previousSample, value, true);
+                        RaisePropertyChanged("SampleMessage", previousSample, value, true);
 
-                    LearnMode = LearnModes.None;
+                        LearnMode = LearnModes.None;
+                    }
                 }
             }
         }

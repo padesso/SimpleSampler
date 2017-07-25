@@ -17,7 +17,6 @@ namespace SimpleSamplerWPF.Model.Audio
             callback(samples, null);
         }
 
-        //TODO: add exceptions, etc if needed
         public void AddSample(Sample sound)
         {
             samples.Add(sound);
