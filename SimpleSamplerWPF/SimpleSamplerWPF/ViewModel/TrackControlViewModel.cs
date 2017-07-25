@@ -50,11 +50,14 @@ namespace SimpleSamplerWPF.ViewModel
             track = new TrackItem();
 
             if (isMaster)
+            {
                 Name = "Master";
-
-            //TODO: register for sample selected event and assign it!
-            Messenger.Default.Register<NoteOnEvent>( this, note => NoteOnMessage = note);
-            Messenger.Default.Register<Sample>(this, sample => SampleMessage = sample);
+            }
+            else
+            {
+                Messenger.Default.Register<NoteOnEvent>(this, note => NoteOnMessage = note);
+                Messenger.Default.Register<Sample>(this, sample => SampleMessage = sample);
+            }
         }
 
         private void ToggleMidiLearnMode()
@@ -195,11 +198,12 @@ namespace SimpleSamplerWPF.ViewModel
 
             set
             {
-                //TODO: why is this firing twice???
                 if (LearnMode == LearnModes.SampleLearnMode)
                 {
                     Sample previousSample = track.Sample;
                     track.Sample = value;
+                    Name = track.Sample.Name;
+
                     RaisePropertyChanged("SampleMessage", previousSample, value, true);
 
                     LearnMode = LearnModes.None;
