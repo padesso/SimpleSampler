@@ -72,7 +72,7 @@ namespace SimpleSamplerWPF.ViewModel
         public void PlaySample()
         {
             if (selectedSample != null)
-                AudioPlaybackEngine.Instance.PlaySound(SelectedSample.CachedSound);
+                AudioPlaybackEngine.Instance.PlaySound(SelectedSample.CachedSound, 1.0f, true);
         }
 
         private bool IsSampleLoaded()

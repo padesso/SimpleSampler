@@ -93,14 +93,27 @@ namespace SimpleSamplerWPF.ViewModel
         {
             get
             {
+                if(IsMaster)
+                {
+                    return AudioPlaybackEngine.Instance.MasterVolume;
+                }
+                
                 return track.Volume;
             }
 
             set
             {
-                float previousVolume = track.Volume;
-                track.Volume = value;
-                RaisePropertyChanged("Volume", previousVolume, value, true);
+                if(IsMaster)
+                {
+                    AudioPlaybackEngine.Instance.MasterVolume = value;
+                    RaisePropertyChanged("Volume");
+                }
+                else
+                {
+                    float previousVolume = track.Volume;
+                    track.Volume = value;
+                    RaisePropertyChanged("Volume", previousVolume, value, true);
+                }                
             }
         }
 
@@ -168,8 +181,7 @@ namespace SimpleSamplerWPF.ViewModel
             }
 
             set
-            {           
-                //TODO: figure out why this is firing twice per hit     
+            {             
                 Set(ref noteOnMessage, value);
 
                 if(LearnMode == LearnModes.MidiLearnMode)
@@ -183,7 +195,7 @@ namespace SimpleSamplerWPF.ViewModel
                 {
                     if(track.Sample != null)
                     {
-                        AudioPlaybackEngine.Instance.PlaySound(track.Sample.CachedSound);
+                        AudioPlaybackEngine.Instance.PlaySound(track.Sample.CachedSound, Volume, false);
                     }
                 }
             }

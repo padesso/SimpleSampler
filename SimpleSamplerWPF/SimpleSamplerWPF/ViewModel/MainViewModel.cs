@@ -3,11 +3,8 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Win32;
 using NAudio.Midi;
-using NAudio.Wave;
-using NAudio.Wave.SampleProviders;
 using SimpleSamplerWPF.Controls;
 using SimpleSamplerWPF.Logic;
-using SimpleSamplerWPF.Model;
 using SimpleSamplerWPF.Model.MIDI;
 using System;
 using System.Collections.ObjectModel;
@@ -61,12 +58,6 @@ namespace SimpleSamplerWPF.ViewModel
         public void DeleteTrack(TrackControl track)
         {
             trackControls.Remove(track);
-        }
-
-        public void TestSound()
-        {
-            var boom = new CachedSound(@"TestAudio\CYCdh_K1close_Kick-01.wav");
-            AudioPlaybackEngine.Instance.PlaySound(boom);
         }
 
         private void OpenFile()
