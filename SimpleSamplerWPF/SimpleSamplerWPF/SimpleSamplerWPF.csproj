@@ -104,7 +104,6 @@
     <Compile Include="Converters\LearnModeToColorConverter.cs" />
     <Compile Include="Error\MidiDeviceServiceException.cs" />
     <Compile Include="Helpers\AutoDisposeFileReader.cs" />
-    <Compile Include="Helpers\Events\EventArgs.cs" />
     <Compile Include="Logic\AudioPlaybackEngine.cs" />
     <Compile Include="Logic\CachedSound.cs" />
     <Compile Include="Logic\CachedSoundSampleProvider.cs" />

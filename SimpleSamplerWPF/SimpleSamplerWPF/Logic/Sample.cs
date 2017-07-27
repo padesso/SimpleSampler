@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SimpleSamplerWPF.Logic
 {
+    /// <summary>
+    /// Wrapper class for convenient binding samples to sample library, tracks, etc.
+    /// </summary>
     public class Sample
     {
         private CachedSound cachedSound;

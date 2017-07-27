@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace SimpleSamplerWPF.Logic
 {
+    /// <summary>
+    /// Handles the receiving of Midi input and broadcasts messages based on that input.
+    /// </summary>
     public class MidiEngine
     {
         private MidiIn midiIn;

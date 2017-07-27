@@ -9,6 +9,9 @@ using static SimpleSamplerWPF.ViewModel.TrackControlViewModel;
 
 namespace SimpleSamplerWPF.ViewModel
 {
+    /// <summary>
+    /// View model for sample library.
+    /// </summary>
     public class SampleLibraryControlViewModel : ViewModelBase
     {
         ISampleService sampleService;
@@ -34,6 +37,9 @@ namespace SimpleSamplerWPF.ViewModel
                 });
         }
 
+        /// <summary>
+        /// Add a sample to the collection for binding.
+        /// </summary>
         private void AddSample()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -47,6 +53,9 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        /// <summary>
+        /// Informs the sample service to remove a sample.
+        /// </summary>
         private void DeleteSample()
         {
             //safety check
@@ -54,6 +63,10 @@ namespace SimpleSamplerWPF.ViewModel
                 this.sampleService.RemoveSample(selectedSample);
         }
 
+        /// <summary>
+        /// Controls enablement of delete button.  Only allow a click if a sample is selected.
+        /// </summary>
+        /// <returns></returns>
         public bool CanDelete()
         {
             if (selectedSample != null)
@@ -62,6 +75,9 @@ namespace SimpleSamplerWPF.ViewModel
             return false;
         }
 
+        /// <summary>
+        /// The samples to be bound in the UI.
+        /// </summary>
         public ObservableCollection<Sample> Samples
         {
             get
@@ -75,8 +91,9 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
-        //TODO: this doesn't fire when clicking on an already selected sample but we need 
-        //it to so the learning stuff works as expected.
+        /// <summary>
+        /// The sample selected in the UI.
+        /// </summary>
         public Sample SelectedSample
         {
             get
@@ -94,6 +111,10 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        /// <summary>
+        /// If a learn mode is assigned from the track control, we deselect the sample.
+        /// </summary>
+        /// <param name="mode"></param>
         private void LearnMode(LearnModes mode)
         {
             SelectedSample = null; 

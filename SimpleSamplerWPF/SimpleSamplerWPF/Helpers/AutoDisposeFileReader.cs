@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SimpleSamplerWPF.Helpers
 {
+    /// <summary>
+    /// Used to read an audio file but then gets disposed after reading.
+    /// </summary>
     class AutoDisposeFileReader : ISampleProvider
     {
         private readonly AudioFileReader reader;

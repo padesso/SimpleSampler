@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SimpleSamplerWPF.Logic
 {
+    /// <summary>
+    /// Sample provider to serve CachedSounds.
+    /// </summary>
     class CachedSoundSampleProvider : ISampleProvider
     {
         private readonly CachedSound cachedSound;

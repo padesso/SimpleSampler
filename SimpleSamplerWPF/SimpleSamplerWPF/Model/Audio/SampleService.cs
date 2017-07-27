@@ -8,6 +8,9 @@ using SimpleSamplerWPF.Logic;
 
 namespace SimpleSamplerWPF.Model.Audio
 {
+    /// <summary>
+    /// Implementation for controlling samples in the sample library.
+    /// </summary>
     public class SampleService : ISampleService
     {
         private ObservableCollection<Sample> samples = new ObservableCollection<Sample>();

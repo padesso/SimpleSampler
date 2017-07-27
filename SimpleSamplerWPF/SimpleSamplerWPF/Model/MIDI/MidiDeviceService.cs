@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace SimpleSamplerWPF.Model.MIDI
 {
+    /// <summary>
+    /// Implementation for getting Midi Devices and serving to UI.
+    /// </summary>
     class MidiDeviceService : IMidiDeviceService
     {
         //TODO: error handling

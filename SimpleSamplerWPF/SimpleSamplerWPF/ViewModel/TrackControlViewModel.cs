@@ -16,6 +16,10 @@ using SimpleSamplerWPF.Controls;
 
 namespace SimpleSamplerWPF.ViewModel
 {
+    /// <summary>
+    /// View Model for the track controls.  Each Track control is bound individually to an instance of this
+    /// view model so data is not shared across tracks.
+    /// </summary>
     public sealed class TrackControlViewModel : ViewModelBase
     {
         private bool isMaster;
@@ -37,6 +41,11 @@ namespace SimpleSamplerWPF.ViewModel
             SampleLearnMode
         };
 
+        /// <summary>
+        /// Constructs a track view model
+        /// </summary>
+        /// <param name="sampleService">Service to get/set samples.</param>
+        /// <param name="isMaster">Is this the master output track?</param>
         public TrackControlViewModel(ISampleService sampleService, bool isMaster)
         {
             this.sampleService = sampleService;
@@ -61,6 +70,11 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        /// <summary>
+        /// This is fired when a track control fires a message ensuring only a single
+        /// track can be in an active learn mode at one time.
+        /// </summary>
+        /// <param name="notification"></param>
         private void NotificationMessageReceived(NotificationMessage notification)
         {
             // If this is not the track control that sent the message, then set learn mode to None
@@ -70,6 +84,9 @@ namespace SimpleSamplerWPF.ViewModel
             LearnMode = LearnModes.None;
         }
 
+        /// <summary>
+        /// Toggles Midi learn mode for this track.
+        /// </summary>
         private void ToggleMidiLearnMode()
         {
             if (LearnMode == LearnModes.MidiLearnMode)
@@ -86,6 +103,9 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        /// <summary>
+        /// Toggles sample learn mode for this track.
+        /// </summary>
         private void ToggleSampleLearnMode()
         {
             if (LearnMode == LearnModes.SampleLearnMode)
@@ -102,11 +122,18 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        /// <summary>
+        /// Sends the messages to remove a track from the collection and thus, the UI.
+        /// </summary>
+        /// <param name="track"></param>
         private void DeleteTrack(TrackControl track)
         {
             Messenger.Default.Send<TrackControl>(track);
         }
 
+        /// <summary>
+        /// Bound to the volume slider in the UI.
+        /// </summary>
         public float Volume
         {
             get
@@ -135,6 +162,9 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        /// <summary>
+        /// Bound to the pan slider in the UI.
+        /// </summary>
         public float Pan
         {
             get
@@ -150,6 +180,9 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        /// <summary>
+        /// Friendly name of the track.  Gets set to file name by default but can be changed in UI.
+        /// </summary>
         public string Name
         {
             get
@@ -165,6 +198,9 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        /// <summary>
+        /// The current learn mode of the track.
+        /// </summary>
         public LearnModes LearnMode
         {
             get
@@ -178,6 +214,9 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        /// <summary>
+        /// Is this the master output track?
+        /// </summary>
         public bool IsMaster
         {
             get
@@ -191,6 +230,10 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        /// <summary>
+        /// Received from the midi engine.  If teh track has been taught to play a sound and it matches the
+        /// incoming note, then play the sound bound to the track.
+        /// </summary>
         public NoteOnEvent NoteOnMessage
         {
             get
@@ -219,6 +262,9 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        /// <summary>
+        /// Assigns a sample to a track.
+        /// </summary>
         public Sample SampleMessage
         {
             get

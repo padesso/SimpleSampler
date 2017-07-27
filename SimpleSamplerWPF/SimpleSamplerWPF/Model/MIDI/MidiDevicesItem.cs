@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SimpleSamplerWPF.Model.MIDI
 {
+    /// <summary>
+    /// Model for Midi devices.
+    /// </summary>
     public class MidiDevicesItem
     {
         MidiIn midiInputDevices;

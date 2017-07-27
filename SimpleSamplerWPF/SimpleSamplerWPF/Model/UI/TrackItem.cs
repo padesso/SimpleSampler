@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SimpleSamplerWPF.Model.UI
 {
+    /// <summary>
+    /// Model for track user control.
+    /// </summary>
     public class TrackItem
     {
         #region Members

@@ -7,6 +7,9 @@ using System.Windows.Data;
 
 namespace SimpleSamplerWPF.Converters
 {
+    /// <summary>
+    /// Flips the value of a bool for binding.  
+    /// </summary>
     [ValueConversion(typeof(bool), typeof(bool))]
     public class InverseBooleanConverter : IValueConverter
     {

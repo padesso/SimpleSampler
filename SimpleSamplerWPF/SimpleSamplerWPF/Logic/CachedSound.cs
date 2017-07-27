@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SimpleSamplerWPF.Logic
 {
+    /// <summary>
+    /// A sound held in memory instead of being repeatedly read from disk for playback.
+    /// </summary>
     public class CachedSound
     {
         public float[] AudioData { get; private set; }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SimpleSamplerWPF.Error
 {
+    /// <summary>
+    /// Basic exception fired when there is an error getting Midi Devices.
+    /// </summary>
     [Serializable]
     public class MidiDeviceServiceException : Exception
     {

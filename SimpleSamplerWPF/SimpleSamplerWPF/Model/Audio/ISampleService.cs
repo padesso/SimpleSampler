@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace SimpleSamplerWPF.Model.Audio
 {
+    /// <summary>
+    /// Service for controlling samples in the sample library.
+    /// </summary>
     public interface ISampleService
     {
         void GetSamples(Action<ObservableCollection<Sample>, Exception> callback);

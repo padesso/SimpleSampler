@@ -27,7 +27,6 @@ namespace SimpleSamplerWPF.ViewModel
 
         public RelayCommand AddTrackCommand { get; private set; }
 
-        public Action<TrackControl> DeleteTrackAction { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -49,31 +48,27 @@ namespace SimpleSamplerWPF.ViewModel
             Messenger.Default.Register<TrackControl>(this, DeleteTrack);
         }
 
+        /// <summary>
+        /// Adds a new track control to the collection and thus, the UI.
+        /// </summary>
         public void AddTrack()
         {
             TrackControl tc = new TrackControl();
             trackControls.Add(tc);
         }
 
+        /// <summary>
+        /// Removes a track track from the collection and thus, the UI.
+        /// </summary>
+        /// <param name="track"></param>
         public void DeleteTrack(TrackControl track)
         {
             trackControls.Remove(track);
         }
 
-        private void OpenFile()
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "All Supported Files (*.wav;*.mp3)|*.wav;*.mp3|All Files (*.*)|*.*";
-            bool? result = openFileDialog.ShowDialog();
-            if (result.HasValue && result.Value)
-            {
-                //this.selectedFile = openFileDialog.FileName;
-                //audioPlayback.Load(this.selectedFile);
-
-                //TODO: copy file to project directory, add to list view and cache
-            }
-        }
-
+        /// <summary>
+        /// Collection of MidiDevices bound to dropdown in UI.
+        /// </summary>
         public ObservableCollection<string> MidiDevices
         {
             get
@@ -87,6 +82,9 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        /// <summary>
+        /// The selected Midi Device.
+        /// </summary>
         public int SelectedMidiDeviceIndex
         {
             get
@@ -102,6 +100,9 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        /// <summary>
+        /// Collection of track controls bound to ScrollViewer.
+        /// </summary>
         public ObservableCollection<TrackControl> TrackControls
         {
             get
@@ -115,11 +116,17 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        /// <summary>
+        /// Current build version. Bound to label in UI.
+        /// </summary>
         public string Version
         {
             get { return "v " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
         }
 
+        /// <summary>
+        /// Called when shutting down.  
+        /// </summary>
         public override void Cleanup()
         {
             // Get rid of the playback engine instance

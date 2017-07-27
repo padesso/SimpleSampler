@@ -9,6 +9,9 @@ using static SimpleSamplerWPF.ViewModel.TrackControlViewModel;
 
 namespace SimpleSamplerWPF.Converters
 {
+    /// <summary>
+    /// Converts value of a LearnModes enum to a color.  Used to bind to border control in TrackControl.
+    /// </summary>
     public class LearnModeToColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter,

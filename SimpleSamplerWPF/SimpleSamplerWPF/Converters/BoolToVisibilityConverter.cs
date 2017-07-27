@@ -8,6 +8,9 @@ using System.Windows.Data;
 
 namespace SimpleSamplerWPF.Converters
 {
+    /// <summary>
+    /// Converts a bool to a Visibility.  Used to control visiblity of a UI component from a boolean.
+    /// </summary>
     [ValueConversion(typeof(bool), typeof(Visibility))]
     public class BoolToVisibilityConverter : IValueConverter
     {

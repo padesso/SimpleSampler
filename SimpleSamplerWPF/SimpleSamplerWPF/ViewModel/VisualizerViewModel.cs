@@ -1,27 +1,16 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using NAudio.Wave;
-using SimpleSamplerWPF.Helpers;
-using SimpleSamplerWPF.Helpers.Events;
 using SimpleSamplerWPF.Logic;
-using SimpleSamplerWPF.Model.Audio;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Shapes;
-
-// Visualizer converted to WPF and MVVM based on:
-// http://www.giawa.com/tutorials/
-
 
 namespace SimpleSamplerWPF.ViewModel
 {
+    /// <summary>
+    /// View model for the sample visualizer.
+    /// </summary>
     public class VisualizerViewModel : ViewModelBase
     {
         private Sample selectedSample;
@@ -35,6 +24,9 @@ namespace SimpleSamplerWPF.ViewModel
         private double canvasHeight;
         private double canvasWidth;
 
+        /// <summary>
+        /// Default, parameterless constructor
+        /// </summary>
         public VisualizerViewModel()
         {           
             PlaySampleCommand = new RelayCommand(PlaySample, IsSampleLoaded);
@@ -75,6 +67,10 @@ namespace SimpleSamplerWPF.ViewModel
                 AudioPlaybackEngine.Instance.PlaySound(SelectedSample.CachedSound, 1.0f, true);
         }
 
+        /// <summary>
+        /// Is a sample currently loaded.  Bound to play button enabled state.
+        /// </summary>
+        /// <returns></returns>
         private bool IsSampleLoaded()
         {
             if (selectedSample == null)
@@ -83,6 +79,9 @@ namespace SimpleSamplerWPF.ViewModel
             return true;
         }
 
+        /// <summary>
+        /// The currently selected Sample.
+        /// </summary>
         internal Sample SelectedSample
         {
             get
@@ -100,6 +99,9 @@ namespace SimpleSamplerWPF.ViewModel
             }
         }
 
+        /// <summary>
+        /// The collection of points used to draw the waveform.
+        /// </summary>
         public PointCollection PolylinePoints
         {
             get

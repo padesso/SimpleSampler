@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace SimpleSamplerWPF.Model.MIDI
 {
+    /// <summary>
+    /// Interface for getting Midi Devices.
+    /// </summary>
     public interface IMidiDeviceService
     {
         void GetDeviceNames(Action<ObservableCollection<string>, Exception> callback);
